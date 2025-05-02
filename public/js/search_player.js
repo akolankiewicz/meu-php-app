@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
     btnSearchPlayer.addEventListener("click", async function (evt) {
         evt.preventDefault();
         try {
-            const response = await fetch('../actions/search_player.php', {
+            const response = await fetch('../actions/action_search_player.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
