@@ -19,10 +19,10 @@ session_start();
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9">
-                <section class="login-intro">
+                <div class="login-intro">
                     <h1 class="principal-title">Aba Jogadores - Aqui poderá encontrar e cadastrar seus jogadores</h1>
                         <button class="btn btn-success">Filtrar</button>
-                </section>
+                </div>
             </div>
             <div class="col-md-2">
                 <img src="img/ascend_stats_shirt.png" alt="erro" width="300">
