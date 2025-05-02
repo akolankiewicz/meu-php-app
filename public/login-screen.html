@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="css/login-registration.css">
+</head>
+<body>
+    <a href="register-screen.html">Não tem cadastro? clique aqui!</a>
+    <div class="box">
+        <form action="actions/action_login.php" method="post">
+            <fieldset>
+                <legend><b> FORMULÁRIO DE LOGIN </b></legend>
+                <br><br>
+                <br><br>
+                <div class="inputBox">
+                    <input type="text" name="email" id="email" class="inputUser" required>
+                    <label for="email" class="labelinput">E-mail</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="password" name="senha" id="senha" class="inputUser" required>
+                    <label for="senha" class="labelinput"> Senha</label><br>
+                </div>
+                <br><br>
+                <input type="submit" name="submit" id="submit">
+                <br><br>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
