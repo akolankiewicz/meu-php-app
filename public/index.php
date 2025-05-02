@@ -21,7 +21,7 @@
     <h1 class="principal-title">Bem-vindo <b id="session-user-name"></b>, ao maior site de monitoramento de jogadores em ascensão do Brasil!</h1>
 </section>
 
-<main style="text-align: center">
+<main>
 
 </main>
 
