@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('../actions/action_get_user_data.php')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.status}`);
+                exibirToastErro(`Erro na requisição: ${response.status}`);
             }
             return response.json();
         })
@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Ocorreu um erro:', error);
-            document.getElementById('session-user-name').textContent = 'Ocorreu um erro ao buscar as variáveis do servidor.';
+            document.getElementById('session-user-name').textContent = '';
         });
+
+    if (localStorage.getItem('data_players') && window.location.pathname === '/players.php') {
+        const data = JSON.parse(localStorage.getItem('data_players'));
+        if (data.mustAddPlayersToTheTable === true) {
+            addPlayersToTheTable(data.dataPlayers);
+        }
+        localStorage.clear();
+    }
 });

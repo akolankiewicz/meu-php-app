@@ -20,7 +20,7 @@ class Login
      */
     public function doLogin(string $email, string $password): ?array
     {
-        $userData = $this->verifyIfExistsEmail($email);
+        $userData = $this->verifyIfExistsEmail($email)[0];
         if (! $userData) {
             throw new Exception('Email inexistente, verifique se escreveu corretamente ou faça seu cadastro!');
         }
@@ -33,7 +33,7 @@ class Login
         }
     }
 
-    private function verifyIfExistsEmail(string $email)
+    private function verifyIfExistsEmail(string $email): ?array
     {
         return $this->db->queryAndFetch("SELECT id, nome, email, senha FROM users WHERE email = '" . $email . "'" );
     }

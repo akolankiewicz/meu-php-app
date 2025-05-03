@@ -11,7 +11,7 @@ class SearchPlayer
 {
     /** @var DB  */
     private $db;
-    public function __construct(PDO $db)
+    public function __construct(DB $db)
     {
         $this->db = $db;
     }
@@ -22,7 +22,10 @@ class SearchPlayer
     public function searchPlayer(string $search): ?array
     {
         try {
-            return $this->db->queryAndFetch("select * from players where name like '%$search%'");
+            if (empty($search)) {
+                return $this->db->queryAndFetch("select * from players order by nome asc");
+            }
+            return $this->db->queryAndFetch("select * from players where nome like '%$search%'");
         } catch (Exception $e) {
             throw new Exception('Ocorreu um erro ao retornar a busca: ' . $e->getMessage());
         }

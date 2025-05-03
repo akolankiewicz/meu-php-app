@@ -1,5 +1,4 @@
 body {
-    background: #f30000;
     background: linear-gradient(90deg, rgb(185, 185, 185) 0%, rgb(189, 189, 189) 50%, rgb(189, 189, 189) 88%);
 }
 
@@ -67,4 +66,20 @@ body {
 
 .navbar-dark .navbar-nav .nav-link:hover {
     color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-filter-players {
+    transition: transform 0.4s ease-in-out;
+}
+
+.btn-filter-players:hover {
+    transform: scale(1.02);
+    background-color: dimgrey;
+    color: white;
+}
+
+.btn-secondary.btn-sm,
+.btn-primary.btn-sm {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }

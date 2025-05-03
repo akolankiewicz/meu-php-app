@@ -18,7 +18,6 @@ class DB {
             $this->pdo = new PDO($db, $user, $password, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             ]);
-            echo "Conexão com sucesso!";
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
         }
@@ -37,10 +36,10 @@ class DB {
         return $this->pdo;
     }
 
-    public function queryAndFetch(string $text)
+    public function queryAndFetch(string $text): ?array
     {
         $query = $this->pdo->query($text);
-        return $query->fetch(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**

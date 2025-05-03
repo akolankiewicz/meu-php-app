@@ -11,13 +11,32 @@ window.addEventListener('load', function () {
                 body: 'search=' + document.getElementById('text-search-player').value
             });
 
-            if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.status}`);
+            const data = await response.text();
+            const parseData = JSON.parse(data);
+            if (parseData.erro) {
+                document.getElementById('text-search-player').value = '';
+                exibirToastErro(parseData.erro);
+                return;
             }
 
-            const data = await response.text();
+            if (parseData.length === 1) {
+                //abrir tela do jogador com stats n mexa aq gemini
+                return;
+            }
+
+            const pathAtual = window.location.pathname;
+            if (pathAtual !== '/players.php') {
+                localStorage.setItem('data_players', JSON.stringify({
+                    dataPlayers: parseData,
+                    mustAddPlayersToTheTable: true
+                }));
+                window.location.href = "../players.php";
+                return;
+            }
+
+            addPlayersToTheTable(parseData);
         } catch (error) {
-            console.error('Ocorreu um erro:', error);
+            exibirToastErro(error);
         }
     });
 });
