@@ -5,7 +5,7 @@ use http\Exception;
 use PDO;
 use PDOException;
 
-class DB {
+final class DB {
     private static ?DB $instance = null;
     private PDO $pdo;
 

@@ -7,7 +7,7 @@ namespace App\Impl;
 use DateTime;
 use Exception;
 
-class Register {
+final class Register {
     private DB $db;
 
     public function __construct(DB $db) {

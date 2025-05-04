@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     advancedFilterButton.innerHTML = '<i class="bi bi-lightning-fill me-2"></i>Abrir filtros rápidos';
                     addAdvancedFilters();
                 } else {
-                    console.log('entra no else');
                     advancedFilterButton.innerHTML = '<i class="bi bi-funnel-fill me-2"></i>Abrir filtros avançados';
                     addQuickFilters();
                 }

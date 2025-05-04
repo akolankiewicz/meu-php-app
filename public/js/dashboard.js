@@ -1,15 +1,27 @@
 
-document.addEventListener("DOMContentLoaded", function () {
-    renderDashboardCards();
-    renderBarChart();
-    renderPizzaChart();
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const response = await fetch('../actions/action_dashboard.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        });
+
+        const parseData = await response.json();
+        renderDashboardCards(parseData.cardsData);
+        renderBarChart(parseData.barChartData);
+        renderPizzaChart(parseData.pizzaChartData);
+    } catch (error) {
+        exibirToastErro(error);
+    }
 });
 
-function renderDashboardCards() {
+function renderDashboardCards(data) {
     const dadosDashboard = [
-        { titulo: "Total de jogadores cadastrados", valor: 0, cor: "primary", link: 'players.php'},
-        { titulo: "Total de colaboradores", valor: 0, cor: "info", link: 'colaborators.php' },
-        { titulo: "Acessos Hoje", valor: 0, cor: "success", link: 'acessos.php' },
+        { titulo: "Total de jogadores registrados", valor: data.totalJogadores, cor: "primary", link: 'players.php'},
+        { titulo: "Total de colaboradores", valor: data.totalColaboradores, cor: "info", link: 'colaborators.php' },
+        { titulo: "Total de planos de treino", valor: data.totalPlanosDeTreino, cor: "success", link: 'training_plan.php' },
     ];
 
     const container = document.getElementById("dashboard-cards");
@@ -30,69 +42,53 @@ function renderDashboardCards() {
     });
 }
 
-function renderBarChart() {
-    const chart = new CanvasJS.Chart("bar-chart",
-        {
-            title:{
-                text: "Gráfico de Barras",
-                fontColor: "white"
-            },
-            legend: {
-                maxWidth: 500,
-                itemWidth: 120,
-                fontColor: "white"
-            },
-            backgroundColor: "transparent",
-            data: [
-                {
-                    type: "bar",
-                    dataPoints: [
-                        { y: 198, label: "Italy", fontColor: "white"},
-                        { y: 201, label: "China", fontColor: "white"},
-                        { y: 202, label: "France", fontColor: "white"},
-                        { y: 236, label: "Great Britain", fontColor: "white"},
-                        { y: 395, label: "Soviet Union", fontColor: "white"},
-                        { y: 957, label: "USA", fontColor: "white"}
-                    ]
-                },
-                {
-                    type: "bar",
-                    dataPoints: [
-                        { y: 166, label: "Italy", fontColor: "white"},
-                        { y: 144, label: "China", fontColor: "white"},
-                        { y: 223, label: "France", fontColor: "white"},
-                        { y: 272, label: "Great Britain", fontColor: "white"},
-                        { y: 319, label: "Soviet Union", fontColor: "white"},
-                        { y: 759, label: "USA", fontColor: "white"}
-                    ]
-                },
-                {
-                    type: "bar",
-                    dataPoints: [
-                        { y: 185, label: "Italy", fontColor: "white"},
-                        { y: 128, label: "China", fontColor: "white"},
-                        { y: 246, label: "France", fontColor: "white"},
-                        { y: 272, label: "Great Britain", fontColor: "white"},
-                        { y: 296, label: "Soviet Union", fontColor: "white"},
-                        { y: 666, label: "USA", fontColor: "white"}
-                    ]
-                }
-            ]
-        });
+function renderBarChart(data) {
+    const dataPoints = [];
+    for (const nacionalidade in data) {
+        if (data.hasOwnProperty(nacionalidade)) {
+            const quantidade = data[nacionalidade];
+            dataPoints.push({ label: nacionalidade, y: quantidade });
+        }
+    }
 
+    const chart = new CanvasJS.Chart("bar-chart", {
+        title: {
+            text: "Total de nacionalidades",
+            fontColor: "white"
+        },
+        axisX: {
+            labelFontColor: "white",
+            titleFontColor: "white"
+        },
+        axisY: {
+            labelFontColor: "white",
+            title: "Total de jogadores",
+            titleFontColor: "white"
+        },
+        legend: {
+            fontColor: "white"
+        },
+        backgroundColor: "transparent",
+        data: [
+            {
+                type: "column",
+                dataPoints: dataPoints
+            }
+        ]
+    });
     chart.render();
 }
 
-function renderPizzaChart () {
+function renderPizzaChart (data) {
     const chart = new CanvasJS.Chart("pizza-chart",
         {
             title:{
-                text: "Gráfico de Pizza",
+                text: "Total de jogadores por posição",
                 fontColor: "white"
             },
             legend: {
                 maxWidth: 500,
-                itemWidth: 120,
+                itemWidth: 100,
                 fontColor: "white"
             },
             backgroundColor: "transparent",
@@ -102,12 +98,93 @@ function renderPizzaChart () {
                     showInLegend: true,
                     legendText: "{indexLabel}",
                     dataPoints: [
-                        { y: 4181563, indexLabel: "Grêmio", fontColor: "white" },
-                        { y: 2175498, indexLabel: "Internacional", fontColor: "white" },
-                        { y: 3125844, indexLabel: "Juventude", fontColor: "white" }
+                        { y: data.totalATA, indexLabel: "Atacantes", fontColor: "white", click: openFiltersForAtacantes },
+                        { y: data.totalMEI, indexLabel: "Meias", fontColor: "white", click: openFiltersForMeias },
+                        { y: data.totalZAG, indexLabel: "Zagueiros", fontColor: "white", click: openFiltersForZagueiros },
+                        { y: data.totalGOL, indexLabel: "Goleiros", fontColor: "white", click: openFiltersForGoleiros }
                     ]
                 }
             ]
         });
     chart.render();
+}
+
+async function openFiltersForAtacantes() {
+    const open = confirm('Deseja abrir a aba jogadores para visualizar todos os atacantes registrados?');
+    if (open) {
+        const response = await fetch('../actions/action_search_player.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `nome=&posicao=ATA&clube=`
+        });
+
+        const parseData = await response.json();
+        localStorage.setItem('data_players', JSON.stringify({
+            dataPlayers: parseData,
+            mustAddPlayersToTheTable: true
+        }));
+        window.location.href = "../players.php";
+    }
+}
+
+async function openFiltersForMeias() {
+    const open = confirm('Deseja abrir a aba jogadores para visualizar todos os meias registrados?');
+    if (open) {
+        const response = await fetch('../actions/action_search_player.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `nome=&posicao=MEI&clube=`
+        });
+
+        const parseData = await response.json();
+        localStorage.setItem('data_players', JSON.stringify({
+            dataPlayers: parseData,
+            mustAddPlayersToTheTable: true
+        }));
+        window.location.href = "../players.php";
+    }
+}
+
+async function openFiltersForZagueiros() {
+    const open = confirm('Deseja abrir a aba jogadores para visualizar todos os zagueiros registrados?');
+    if (open) {
+        const response = await fetch('../actions/action_search_player.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `nome=&posicao=ZAG&clube=`
+        });
+
+        const parseData = await response.json();
+        localStorage.setItem('data_players', JSON.stringify({
+            dataPlayers: parseData,
+            mustAddPlayersToTheTable: true
+        }));
+        window.location.href = "../players.php";
+    }
+}
+
+async function openFiltersForGoleiros() {
+    const open = confirm('Deseja abrir a aba jogadores para visualizar todos os goleiros registrados?');
+    if (open) {
+        const response = await fetch('../actions/action_search_player.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `nome=&posicao=GOL&clube=`
+        });
+
+        const parseData = await response.json();
+        localStorage.setItem('data_players', JSON.stringify({
+            dataPlayers: parseData,
+            mustAddPlayersToTheTable: true
+        }));
+        window.location.href = "../players.php";
+    }
 }

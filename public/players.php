@@ -32,15 +32,16 @@ session_start();
         <table class="table table-borderless text-white table-bg">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Posição</th>
-                <th scope="col">Peso</th>
-                <th scope="col">Altura</th>
-                <th scope="col">Idade</th>
-                <th scope="col">Data de nascimento</th>
-                <th scope="col">Clube Atual</th>
-                <th scope="col">Ver Mais</th>
+                <th scope="col" class="player-id">#</th>
+                <th scope="col" class="player-name">Nome</th>
+                <th scope="col" class="player-position">Posição</th>
+                <th scope="col" class="player-weight">Peso</th>
+                <th scope="col" class="player-height">Altura</th>
+                <th scope="col" class="player-age">Idade</th>
+                <th scope="col" class="player-birthdate">Data de nascimento</th>
+                <th scope="col" class="player-club">Clube Atual</th>
+                <th scope="col" class="player-nacionality">Nacionalidade</th>
+                <th scope="col" class="player-details">Ver Mais</th>
             </tr>
             </thead>
             <tbody>

@@ -22,26 +22,19 @@ function exibirToastSuccess(mensagem) {
     }).showToast();
 }
 
-function calculateAge(birthDate) {
-    const currentDate = new Date();
-    let age = currentDate.getFullYear() - birthDate.getFullYear();
-    const monthDiff = currentDate.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
-}
-
 function addPlayersToTheTable(parseData) {
-    if (! parseData) {
-        exibirToastErro('Não existem jogadores para essa busca!')
+    if (!parseData) {
+        exibirToastErro('Não existem jogadores para essa busca!');
+        return;
     }
 
     const tableBody = document.querySelector('.table tbody');
     tableBody.innerHTML = '';
     exibirToastSuccess('Busca realizada com sucesso!');
+
     parseData.forEach((player, index) => {
         const row = tableBody.insertRow();
+
         const idCell = row.insertCell();
         const nomeCell = row.insertCell();
         const posicaoCell = row.insertCell();
@@ -50,7 +43,19 @@ function addPlayersToTheTable(parseData) {
         const idadeCell = row.insertCell();
         const dataNascimentoCell = row.insertCell();
         const clubeAtualCell = row.insertCell();
+        const nacionalidadeCell = row.insertCell();
         const verMaisCell = row.insertCell();
+
+        idCell.classList.add('player-id');
+        nomeCell.classList.add('player-name');
+        posicaoCell.classList.add('player-position');
+        pesoCell.classList.add('player-weight');
+        alturaCell.classList.add('player-height');
+        idadeCell.classList.add('player-age');
+        dataNascimentoCell.classList.add('player-birthdate');
+        clubeAtualCell.classList.add('player-club');
+        nacionalidadeCell.classList.add('player-nacionality');
+        verMaisCell.classList.add('player-details');
 
         idCell.textContent = player.id;
         nomeCell.textContent = player.nome;
@@ -80,12 +85,13 @@ function addPlayersToTheTable(parseData) {
         }
 
         clubeAtualCell.textContent = player.clube;
+        nacionalidadeCell.textContent = player.nacionalidade || '-';
 
         const verMaisButton = document.createElement('button');
         verMaisButton.classList.add('btn', 'btn-sm', 'btn-outline-primary');
         verMaisButton.textContent = 'Ver Mais';
-        verMaisButton.addEventListener('click', () => {
-            console.log("Ver mais detalhes do jogador com ID:", player.id);
+        verMaisButton.addEventListener('click', message => {
+            alert("Você perderá a tabela atual!");
         });
         verMaisCell.appendChild(verMaisButton);
     });

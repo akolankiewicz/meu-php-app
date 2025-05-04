@@ -83,3 +83,23 @@ body {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
+
+.player-position,
+.player-weight,
+.player-height,
+.player-age,
+.player-birthdate,
+.player-club {
+    display: table-cell;
+}
+
+@media (max-width: 768px) {
+    .player-nacionality,
+    .player-weight,
+    .player-height,
+    .player-age,
+    .player-birthdate,
+    .player-club {
+        display: none;
+    }
+}

@@ -6,7 +6,7 @@ namespace App\Impl;
 
 use Exception;
 
-class Login
+final class Login
 {
     private DB $db;
 

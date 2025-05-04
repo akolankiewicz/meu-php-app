@@ -107,6 +107,7 @@ function getAdvancedFiltersPostBody() {
     filters.idade = document.getElementById('filter-idade').value;
     filters.data_nascimento = document.getElementById('filter-data-nascimento').value;
     filters.clube = document.getElementById('filter-clube').value;
+    filters.nacionalidade = document.getElementById('filter-nacionalidade').value;
 
     const attributes = [
         "aceleracao", "pique", "finalizacao", "forca_do_chute", "chute_de_longe", "penalti",

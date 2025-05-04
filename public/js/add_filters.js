@@ -49,7 +49,7 @@ function addQuickFilters() {
 function addAdvancedFilters() {
     const advancedFilters = `
     <div class="row mt-4">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="mb-3">
                 <label for="filter-name">Nome do jogador</label>
                 <input type="text" class="form-control form-control-sm" id="filter-nome"
@@ -66,6 +66,13 @@ function addAdvancedFilters() {
                     <option value="ZAG">ZAG</option>
                     <option value="GOL">GOL</option>
                 </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="mb-3">
+                <label for="filter-nacionalidade">Nacionalidade</label>
+                <input class="form-control form-control-sm"
+                    id="filter-nacionalidade" placeholder="Nacionalidade">
             </div>
         </div>
         <div class="col-md-1">

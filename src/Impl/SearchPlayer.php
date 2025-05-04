@@ -8,7 +8,7 @@ use DateTime;
 use Exception;
 use PDO;
 
-class SearchPlayer
+final class SearchPlayer
 {
     /** @var DB  */
     private DB $db;
@@ -110,6 +110,10 @@ class SearchPlayer
             $params[':clube'] = "%" . $filters['clube'] . "%";
         }
 
+        if (! empty($filters['nacionalidade'])) {
+            $whereClauses[] = "nacionalidade LIKE :nacionalidade";
+            $params[':nacionalidade'] = "%" . $filters['nacionalidade'] . "%";
+        }
 
         $attributes = [
             "aceleracao", "pique", "finalizacao", "forca_do_chute", "chute_de_longe", "penalti",

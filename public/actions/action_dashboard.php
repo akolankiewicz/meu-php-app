@@ -1,25 +1,20 @@
 <?php
 
-require '../../vendor/autoload.php';
+use App\Impl\DB;
+use App\Impl\Dashboard;
 
-$chartData = [
-    ['label' => 'Categoria 1', 'value' => 35],
-    ['label' => 'Categoria 2', 'value' => 28],
-    ['label' => 'Categoria 3', 'value' => 15],
-    ['label' => 'Categoria 4', 'value' => 22],
-];
+require_once __DIR__ . "/../../vendor/autoload.php";
+$db = DB::getInstance();
+$pdo = $db->getPdo();
 
-$totalJogadores = 1250;
-$totalColaboradores = 35;
-$acessosHoje = 287;
+$dashboard = new Dashboard($db);
 
-$jsonDataChart = json_encode($chartData);
+$cardsData = $dashboard->getCardsData();
+$pizzaChartData = $dashboard->getPizzaChartData();
+$barChartData = $dashboard->getBarChartData();
 
 echo json_encode([
-    'chartData' => $jsonDataChart,
-    'totalJogadores' => $totalJogadores,
-    'totalColaboradores' => $totalColaboradores,
-    'acessosHoje' => $acessosHoje,
+    'cardsData' => $cardsData,
+    'barChartData' => $barChartData,
+    'pizzaChartData' => $pizzaChartData
 ]);
-
-?>
