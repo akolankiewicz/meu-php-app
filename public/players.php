@@ -29,7 +29,7 @@ session_start();
     <div class="m-5">
         <th></th>
         <p style="color: #555555; font-size: 20px">Tabela de Jogadores</p>
-        <table class="table table-borderless text-white table-bg">
+        <table class="table table-secondary text-white table-bg" style="border: 1px solid dimgrey;">
             <thead>
             <tr>
                 <th scope="col" class="player-id">#</th>
