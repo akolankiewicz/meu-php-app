@@ -1,9 +1,9 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     fetch('../actions/action_get_user_data.php')
         .then(response => {
             if (!response.ok) {
-                exibirToastErro(`Erro na requisição: ${response.status}`);
+                exibirToastErro(`Erro na requisiÃ§Ã£o: ${response.status}`);
             }
             return response.json();
         })
@@ -19,6 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = JSON.parse(localStorage.getItem('data_players'));
         if (data.mustAddPlayersToTheTable === true) {
             addPlayersToTheTable(data.dataPlayers);
+        }
+        if (data.mustClickOnSearchToBringAllPlayers === true) {
+            const intervalId = setInterval(function () {
+                const btnSearchPlayer = document.getElementById("btn-search-player");
+                if (btnSearchPlayer) {
+                    clearInterval(intervalId);
+                    btnSearchPlayer.click();
+                }
+            }, 500);
         }
         localStorage.clear();
     }

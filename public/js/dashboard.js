@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 function renderDashboardCards(data) {
     const dadosDashboard = [
-        { titulo: "Total de jogadores registrados", valor: data.totalJogadores, cor: "primary", link: 'players.php'},
-        { titulo: "Total de colaboradores", valor: data.totalColaboradores, cor: "info", link: 'colaborators.php' },
-        { titulo: "Total de planos de treino", valor: data.totalPlanosDeTreino, cor: "success", link: 'training_plan.php' },
+        { titulo: "Total de jogadores registrados", valor: data.totalJogadores, cor: "primary", id: 't-p'},
+        { titulo: "Total de colaboradores", valor: data.totalColaboradores, cor: "info", id: 't-c'},
+        { titulo: "Total de planos de treino", valor: data.totalPlanosDeTreino, cor: "success", id: 't-pt'}
     ];
 
     const container = document.getElementById("dashboard-cards");
@@ -31,15 +31,22 @@ function renderDashboardCards(data) {
         const col = document.createElement("div");
         col.className = "col-md-4";
         col.innerHTML = `
-            <a class="dashboard-links" href="${dado.link}">
-              <div class="card text-white bg-${dado.cor} p-3 dashboard-card-hover">
-                <h5>${dado.titulo}</h5>
-                <h2>${dado.valor}</h2>
-              </div>
-            </a>
+          <div id="${dado.id}" class="card text-white bg-${dado.cor} p-3 dashboard-card-hover">
+            <h5>${dado.titulo}</h5>
+            <h2>${dado.valor}</h2>
+          </div>
         `;
         container.appendChild(col);
     });
+
+    const cardTotalPlayers = document.getElementById('t-p');
+    cardTotalPlayers.addEventListener('click', function () {
+        localStorage.setItem('data_players', JSON.stringify({
+            mustClickOnSearchToBringAllPlayers: true,
+            mustAddPlayersToTheTable: false
+        }));
+        window.location.pathname = '../players.php';
+    })
 }
 
 function renderBarChart(data) {

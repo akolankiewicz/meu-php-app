@@ -70,7 +70,109 @@ final class DB {
         return [
         'id' => $id,
         'nome' => $nome['nome'],
-    ];
+        ];
+    }
+
+    public function insertNewPlayerAndReturnYourIdName(array $userData): array
+    {
+        $nome = $userData['nome'];
+        $posicao = $userData['posicao']; 
+        $nacionalidade = $userData['nacionalidade'];
+        $peso = $userData['peso'];
+        $altura = $userData['altura'];
+        $dataNascimento = $userData['dataNascimento'];
+        $clube = $userData['clube'];
+        $aceleracao = $userData['aceleracao'] ?? null;
+        $pique = $userData['pique'] ?? null;
+        $finalizacao = $userData['finalizacao'] ?? null;
+        $forca_do_chute = $userData['forca_do_chute'] ?? null;
+        $chute_de_longe = $userData['chute_de_longe'] ?? null;
+        $penalti = $userData['penalti'] ?? null;
+        $visao_de_jogo = $userData['visao_de_jogo'] ?? null;
+        $cruzamento = $userData['cruzamento'] ?? null;
+        $passe_curto = $userData['passe_curto'] ?? null;
+        $passe_longo = $userData['passe_longo'] ?? null;
+        $curva = $userData['curva'] ?? null;
+        $agilidade = $userData['agilidade'] ?? null;
+        $equilibrio = $userData['equilibrio'] ?? null;
+        $reacao = $userData['reacao'] ?? null;
+        $controle_de_bola = $userData['controle_de_bola'] ?? null;
+        $drible = $userData['drible'] ?? null;
+        $agressividade = $userData['agressividade'] ?? null;
+        $interceptacao = $userData['interceptacao'] ?? null;
+        $precisao_no_cabeceio = $userData['precisao_no_cabeceio'] ?? null;
+        $nocao_defensiva = $userData['nocao_defensiva'] ?? null;
+        $desarme = $userData['desarme'] ?? null;
+        $carrinho = $userData['carrinho'] ?? null;
+        $impulsao = $userData['impulsao'] ?? null;
+        $folego = $userData['folego'] ?? null;
+        $forca = $userData['forca'] ?? null;
+        
+        $sql = "INSERT INTO players (
+                    nome, posicao, nacionalidade, peso, altura, data_nascimento, clube,
+                    aceleracao, pique, finalizacao, forca_do_chute, chute_de_longe, penalti,
+                    visao_de_jogo, cruzamento, passe_curto, passe_longo, curva, agilidade,
+                    equilibrio, reacao, controle_de_bola, drible, agressividade, interceptacao,
+                    precisao_no_cabeceio, nocao_defensiva, desarme, carrinho, impulsao, folego,
+                    forca
+                ) VALUES (
+                    :nome, :posicao, :nacionalidade, :peso, :altura, :dataNascimento, :clube,
+                    :aceleracao, :pique, :finalizacao, :forca_do_chute, :chute_de_longe, :penalti,
+                    :visao_de_jogo, :cruzamento, :passe_curto, :passe_longo, :curva, :agilidade,
+                    :equilibrio, :reacao, :controle_de_bola, :drible, :agressividade, :interceptacao,
+                    :precisao_no_cabeceio, :nocao_defensiva, :desarme, :carrinho, :impulsao, :folego,
+                    :forca
+                )";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->bindValue(':nome', $nome);
+        $stmt->bindValue(':posicao', $posicao);
+        $stmt->bindValue(':nacionalidade', $nacionalidade);
+        $stmt->bindValue(':peso', $peso);
+        $stmt->bindValue(':altura', $altura);
+        $stmt->bindValue(':dataNascimento', $dataNascimento);
+        $stmt->bindValue(':clube', $clube);
+        $stmt->bindValue(':aceleracao', $aceleracao);
+        $stmt->bindValue(':pique', $pique);
+        $stmt->bindValue(':finalizacao', $finalizacao);
+        $stmt->bindValue(':forca_do_chute', $forca_do_chute);
+        $stmt->bindValue(':chute_de_longe', $chute_de_longe);
+        $stmt->bindValue(':penalti', $penalti);
+        $stmt->bindValue(':visao_de_jogo', $visao_de_jogo);
+        $stmt->bindValue(':cruzamento', $cruzamento);
+        $stmt->bindValue(':passe_curto', $passe_curto);
+        $stmt->bindValue(':passe_longo', $passe_longo);
+        $stmt->bindValue(':curva', $curva);
+        $stmt->bindValue(':agilidade', $agilidade);
+        $stmt->bindValue(':equilibrio', $equilibrio);
+        $stmt->bindValue(':reacao', $reacao);
+        $stmt->bindValue(':controle_de_bola', $controle_de_bola);
+        $stmt->bindValue(':drible', $drible);
+        $stmt->bindValue(':agressividade', $agressividade);
+        $stmt->bindValue(':interceptacao', $interceptacao);
+        $stmt->bindValue(':precisao_no_cabeceio', $precisao_no_cabeceio);
+        $stmt->bindValue(':nocao_defensiva', $nocao_defensiva);
+        $stmt->bindValue(':desarme', $desarme);
+        $stmt->bindValue(':carrinho', $carrinho);
+        $stmt->bindValue(':impulsao', $impulsao);
+        $stmt->bindValue(':folego', $folego);
+        $stmt->bindValue(':forca', $forca);
+        $result = $stmt->execute();
+
+        if (! $result) {
+            throw new \Exception("Erro ao inserir os dados");
+        }
+
+        try {
+            $id = $this->pdo->lastInsertId();
+            $nome = $this->queryAndFetch("SELECT nome FROM players WHERE id = " . $id);
+
+            return ['id' => $id, 'nome' => $nome];
+        } catch (PDOException $e) {
+            http_response_code(500);
+            return ['erro' => 'Erro ao inserir jogador no banco de dados: ' . $e->getMessage()];
+        }
     }
 
     private function __clone() { }

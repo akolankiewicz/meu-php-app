@@ -86,7 +86,7 @@ async function applyAdvancedFilter(evt) {
         const parseData = await response.json();
 
         if (parseData.erro) {
-            clearAdvancedFilters();
+            clearFieldsFilters();
             exibirToastErro(parseData.erro);
             return;
         }
@@ -134,18 +134,21 @@ function getAdvancedFiltersPostBody() {
     return formData.toString();
 }
 
-function clearAdvancedFilters() {
-    const filtersContainer = document.getElementById("filters");
-    if (filtersContainer) {
-        const inputs = filtersContainer.querySelectorAll('input[type="text"], input[type="number"]');
-        const selects = filtersContainer.querySelectorAll('select');
+function clearFieldsFilters() {
+    let clear = confirm('Deseja realmente limpar os campos preenchidos? Você perderá o processo atual.');
+    if (clear) {
+        const filtersContainer = document.getElementById("filters");
+        if (filtersContainer) {
+            const inputs = filtersContainer.querySelectorAll('input[type="text"], input[type="number"]');
+            const selects = filtersContainer.querySelectorAll('select');
 
-        inputs.forEach(input => {
-            input.value = '';
-        });
+            inputs.forEach(input => {
+                input.value = '';
+            });
 
-        selects.forEach(select => {
-            select.value = '';
-        });
+            selects.forEach(select => {
+                select.value = '';
+            });
+        }
     }
 }

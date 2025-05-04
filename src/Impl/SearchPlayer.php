@@ -170,14 +170,17 @@ final class SearchPlayer
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function dateInFormatToDateInDatabaseFormat($date) {
+    /**
+     * @throws Exception
+     */
+    private function dateInFormatToDateInDatabaseFormat($date): string
+    {
         $data_objeto = DateTime::createFromFormat('d/m/Y', $date);
 
         if ($data_objeto) {
             return $data_objeto->format('Y-m-d');
         } else {
-            error_log("Formato de data inválido: " . $date);
-            return false;
+            throw new Exception("Formato de data inválido: " . $date);
         }
     }
 }

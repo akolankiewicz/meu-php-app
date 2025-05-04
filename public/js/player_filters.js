@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         Abrir filtros avançados</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-primary btn-sm w-100"><i class="bi bi-plus-circle-fill me-2"></i>
+                    <button id="btn-open-player-register" class="btn btn-primary btn-sm w-100"><i class="bi bi-plus-circle-fill me-2"></i>
                         Cadastrar novo jogador</button>
                 </div>
             </div>
@@ -46,5 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     } else {
         console.error('Elemento com id "quick-filters" não encontrado.');
+    }
+
+    const buttonOpenPlayerRegister = document.getElementById('btn-open-player-register');
+    if (buttonOpenPlayerRegister) {
+        buttonOpenPlayerRegister.addEventListener('click', openPlayerRegisterFields);
     }
 });

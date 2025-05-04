@@ -71,29 +71,29 @@ function addAdvancedFilters() {
         <div class="col-md-1">
             <div class="mb-3">
                 <label for="filter-nacionalidade">Nacionalidade</label>
-                <input class="form-control form-control-sm"
-                    id="filter-nacionalidade" placeholder="Nacionalidade">
+                <input type="text" class="form-control form-control-sm"
+                    id="filter-nacionalidade" placeholder="País">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
                 <label for="filter-peso">Peso</label>
                 <input type="number" class="form-control form-control-sm"
-                    id="filter-peso" placeholder="Peso">
+                    id="filter-peso" placeholder="000">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
                 <label for="filter-altura">Altura</label>
                 <input type="number" class="form-control form-control-sm"
-                    id="filter-altura" placeholder="Altura">
+                    id="filter-altura" placeholder="0.00">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
                 <label for="filter-idade">Idade</label>
                 <input type="number" class="form-control form-control-sm" id="filter-idade"
-                    placeholder="Idade">
+                    placeholder="00">
             </div>
         </div>
         <div class="col-md-2">
@@ -119,8 +119,10 @@ function addAdvancedFilters() {
     </div>
     <div class="row mt-2">
         <div class="col-md-12 text-end">
-            <button type="button" class="btn btn-secondary btn-sm me-3" id="clear-filter-button">Limpar</button>
-            <button type="submit" class="btn btn-primary btn-sm" id="btn-apply-advanced-filter">Aplicar Filtros</button>
+            <button type="button" class="btn btn-secondary btn-sm me-3" id="clear-filter-button" style="width: 150px;">
+                Limpar</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="btn-apply-advanced-filter" style="width: 150px;">
+                Aplicar Filtros</button>
         </div>
     </div>
     `;
@@ -133,7 +135,7 @@ function addAdvancedFilters() {
     }
 
     const clearFilterButton = document.getElementById('clear-filter-button');
-    clearFilterButton.addEventListener('click', clearAdvancedFilters);
+    clearFilterButton.addEventListener('click', clearFieldsFilters);
     const btnApplyAdvancedFilter = document.getElementById('btn-apply-advanced-filter');
     btnApplyAdvancedFilter.addEventListener("click", applyAdvancedFilter);
 }

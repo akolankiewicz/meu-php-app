@@ -51,6 +51,7 @@ session_start();
 
     <footer id="footer-footer" class="bg-dark text-white py-4 mt-7"></footer>
 
+    <script src="js/create_player.js"></script>
     <script src="js/add_filters.js"></script>
     <script src="js/utils.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

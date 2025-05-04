@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const navbarHTML = `
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #343a40;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="../index.php">
             <img src="../img/ascend_stats_circle_border.png" alt="Erro ao carregar imagem" width="60" height="60">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

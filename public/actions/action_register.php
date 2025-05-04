@@ -1,7 +1,7 @@
 <?php
 
 use App\Impl\DB;
-use App\Impl\Register;
+use App\Impl\RegisterUser;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();
@@ -18,10 +18,10 @@ $dataUser = [
     "endereco" => $_POST['endereco'] ?? '',
 ];
 
-$register = new Register($db);
+$register = new RegisterUser($db);
 if ($register->validateFieldsToInsert($dataUser) === true) {
     try {
-        $loginIdAndName = $register->registerUserAndReturnYourId($dataUser);
+        $loginIdAndName = $register->registerAndReturnYourId($dataUser);
     } catch (Exception $e) {
         throw new \Exception("Erro ao inserir os dados: " . $e->getMessage());
     }

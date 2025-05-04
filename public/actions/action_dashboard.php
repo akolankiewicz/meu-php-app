@@ -5,7 +5,6 @@ use App\Impl\Dashboard;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();
-$pdo = $db->getPdo();
 
 $dashboard = new Dashboard($db);
 
