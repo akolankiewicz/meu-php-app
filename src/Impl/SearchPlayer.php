@@ -29,7 +29,7 @@ final class SearchPlayer
     {
         try {
             if (empty($search)) {
-                return $this->db->queryAndFetch("select * from players order by nome asc");
+                return $this->db->queryAndFetch("select * from players order by id desc");
             }
             return $this->db->queryAndFetch("select * from players where nome like '%$search%'");
         } catch (Exception $e) {

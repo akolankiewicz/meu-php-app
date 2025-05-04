@@ -40,13 +40,7 @@ function renderDashboardCards(data) {
     });
 
     const cardTotalPlayers = document.getElementById('t-p');
-    cardTotalPlayers.addEventListener('click', function () {
-        localStorage.setItem('data_players', JSON.stringify({
-            mustClickOnSearchToBringAllPlayers: true,
-            mustAddPlayersToTheTable: false
-        }));
-        window.location.pathname = '../players.php';
-    })
+    cardTotalPlayers.addEventListener('click', openFiltersForAllPlayers);
 }
 
 function renderBarChart(data) {
@@ -114,6 +108,26 @@ function renderPizzaChart (data) {
             ]
         });
     chart.render();
+}
+
+async function openFiltersForAllPlayers() {
+    const open = confirm('Deseja abrir a aba jogadores para visualizar todos os jogadores registrados?');
+    if (open) {
+        const response = await fetch('../actions/action_search_player.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `search=`
+        });
+
+        const parseData = await response.json();
+        localStorage.setItem('data_players', JSON.stringify({
+            dataPlayers: parseData,
+            mustAddPlayersToTheTable: true
+        }));
+        window.location.href = "../players.php";
+    }
 }
 
 async function openFiltersForAtacantes() {

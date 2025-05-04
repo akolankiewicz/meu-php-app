@@ -20,15 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.mustAddPlayersToTheTable === true) {
             addPlayersToTheTable(data.dataPlayers);
         }
-        if (data.mustClickOnSearchToBringAllPlayers === true) {
-            const intervalId = setInterval(function () {
-                const btnSearchPlayer = document.getElementById("btn-search-player");
-                if (btnSearchPlayer) {
-                    clearInterval(intervalId);
-                    btnSearchPlayer.click();
-                }
-            }, 500);
-        }
         localStorage.clear();
     }
 });
