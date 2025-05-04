@@ -21,10 +21,14 @@ session_start();
 
     <div class="login-intro">
         <h1 class="principal-title">Aba Jogadores - Aqui poderá encontrar e cadastrar seus jogadores</h1>
-        <div id="quick-filters"></div>
+        <div id="buttons"></div>
+        <div id="filters"></div>
+        <hr class="mt-3 mb-3">
     </div>
 
     <div class="m-5">
+        <th></th>
+        <p style="color: #555555; font-size: 20px">Tabela de Jogadores</p>
         <table class="table table-borderless text-white table-bg">
             <thead>
             <tr>
@@ -46,6 +50,7 @@ session_start();
 
     <footer id="footer-footer" class="bg-dark text-white py-4 mt-7"></footer>
 
+    <script src="js/add_filters.js"></script>
     <script src="js/utils.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="js/player_filters.js"></script>

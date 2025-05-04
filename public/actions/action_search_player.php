@@ -5,11 +5,19 @@ use App\Impl\SearchPlayer;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();
+$pdo = $db->getPdo();
 
-$search = $_POST['search'];
+$search = $_POST['search'] ?? null;
+$nome = $_POST['nome'] ?? '';
+$posicao = $_POST['posicao'] ?? '';
+$clube = $_POST['clube'] ?? '';
 
-$searchPlayer = new SearchPlayer($db);
-$retorno = $searchPlayer->searchPlayer($search);
+$searchPlayer = new SearchPlayer($db, $pdo);
+if ($search === null) {
+    $retorno = $searchPlayer->searchPlayerByNamePositionClub($nome, $posicao, $clube);
+} else {
+    $retorno = $searchPlayer->searchPlayer($search);
+}
 
 if (! $retorno) {
     echo json_encode(['erro' => 'Não existem jogadores para essa busca!']);

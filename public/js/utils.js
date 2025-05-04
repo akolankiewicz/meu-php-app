@@ -33,6 +33,10 @@ function calculateAge(birthDate) {
 }
 
 function addPlayersToTheTable(parseData) {
+    if (! parseData) {
+        exibirToastErro('Não existem jogadores para essa busca!')
+    }
+
     const tableBody = document.querySelector('.table tbody');
     tableBody.innerHTML = '';
     exibirToastSuccess('Busca realizada com sucesso!');
@@ -55,13 +59,21 @@ function addPlayersToTheTable(parseData) {
         alturaCell.textContent = player.altura ? `${player.altura} m` : '-';
 
         if (player.data_nascimento) {
-            const birthDate = new Date(player.data_nascimento);
-            const day = String(birthDate.getDate()).padStart(2, '0');
-            const month = String(birthDate.getMonth() + 1).padStart(2, '0');
-            const year = birthDate.getFullYear();
-            const formattedDate = `${day}/${month}/${year}`;
-            idadeCell.textContent = calculateAge(birthDate);
-            dataNascimentoCell.textContent = formattedDate;
+            const [ano, mes, dia] = player.data_nascimento.split('-');
+            const dataFormatada = `${dia}/${mes}/${ano}`;
+
+            const dataNascimento = new Date(`${ano}-${mes}-${dia}T00:00:00`);
+            const hoje = new Date();
+            let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+            const mesAtual = hoje.getMonth();
+            const diaAtual = hoje.getDate();
+            if (mesAtual < dataNascimento.getMonth() ||
+                (mesAtual === dataNascimento.getMonth() && diaAtual < dataNascimento.getDate())) {
+                idade--;
+            }
+
+            idadeCell.textContent = String(idade);
+            dataNascimentoCell.textContent = dataFormatada;
         } else {
             idadeCell.textContent = '-';
             dataNascimentoCell.textContent = '-';
