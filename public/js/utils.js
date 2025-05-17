@@ -22,6 +22,18 @@ function exibirToastSuccess(mensagem) {
     }).showToast();
 }
 
+function exibirToastAlert(mensagem) {
+    Toastify({
+        text: mensagem,
+        duration: 2500,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        backgroundColor: "#bdb514",
+        stopOnFocus: true,
+    }).showToast();
+}
+
 function addPlayersToTheTable(parseData) {
     if (!parseData) {
         exibirToastErro('Não existem jogadores para essa busca!');

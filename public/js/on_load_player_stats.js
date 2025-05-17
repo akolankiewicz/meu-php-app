@@ -26,6 +26,7 @@ async function showPlayerStats(parseData) {
         imgElement.src = `img/${player.imagem}`;
     } else {
         imgElement.src = 'img/default.png';
+        exibirToastAlert('O Jogador não possuí imagem cadastrada!')
     }
 
     document.querySelector('.info-player').innerHTML = `
