@@ -91,7 +91,7 @@ function addPlayersToTheTable(parseData) {
         verMaisButton.classList.add('btn', 'btn-sm', 'btn-outline-primary');
         verMaisButton.textContent = 'Ver Mais';
         verMaisButton.addEventListener('click', message => {
-            alert("Você perderá a tabela atual!");
+            window.location.href = `../player_stats.php?player_id=${player.id}`;
         });
         verMaisCell.appendChild(verMaisButton);
     });

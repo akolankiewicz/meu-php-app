@@ -183,4 +183,10 @@ final class SearchPlayer
             throw new Exception("Formato de data inválido: " . $date);
         }
     }
+
+    public function searchPlayerById(int $id): array
+    {
+        $sql = "SELECT * FROM players WHERE id = $id";
+        return $this->db->queryAndFetch($sql);
+    }
 }

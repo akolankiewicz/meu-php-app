@@ -20,7 +20,7 @@ window.addEventListener('load', function () {
             }
 
             if (parseData.length === 1) {
-                //abrir tela do jogador com stats n mexa aq gemini
+                window.location.href = `../player_stats.php?player_id=${parseData[0].id}`;
                 return;
             }
 
