@@ -86,7 +86,7 @@ async function applyAdvancedFilter(evt) {
         const parseData = await response.json();
 
         if (parseData.erro) {
-            clearFieldsFilters();
+            clearFieldsFilters(false);
             exibirToastErro(parseData.erro);
             return;
         }
@@ -134,8 +134,14 @@ function getAdvancedFiltersPostBody() {
     return formData.toString();
 }
 
-function clearFieldsFilters() {
-    let clear = confirm('Deseja realmente limpar os campos preenchidos? Você perderá o processo atual.');
+function clearFieldsFilters(showConfirm) {
+    let clear;
+    if (showConfirm) {
+        clear = confirm('Deseja realmente limpar os campos preenchidos? Você perderá o processo atual.');
+    } else {
+        clear = false;
+    }
+
     if (clear) {
         const filtersContainer = document.getElementById("filters");
         if (filtersContainer) {

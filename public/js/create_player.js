@@ -213,7 +213,7 @@ function createPlayer() {
             exibirToastErro(data.erro);
         } else {
             exibirToastSuccess("Jogador ID: "+ data.id + " " + data.nome.nome + " cadastrado com sucesso!");
-            clearFieldsFilters();
+            clearFieldsFilters(false);
         }
     })
     .catch(error => {
