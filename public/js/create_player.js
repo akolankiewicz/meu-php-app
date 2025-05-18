@@ -57,19 +57,26 @@ function openPlayerRegisterFields() {
         </div>
     </div>
     <p class="mt-4" style="color: #555555; font-size: 20px">Filtros por atributo</p>
-    <hr class="mt-3 mb-3">
+    <hr class="mt-3 mb-3"><br>
     <div class="row mt-2">
         <!-- Rever se pode isso ou melhor colocar alguma tag html com id -->
         ${generateAttributeFields()}
     </div>
+    <br>
+    <hr class="mt-3 mb-3">
     <div class="row mt-2">
-        <div class="col-md-12 text-end">
+        <div class="col-md-6">
+            <label for="img-player" style="color: #555555; font-size: 20px; padding: 10px;">Imagem do Jogador (Opcional)
+                </label>
+            <input id="filter-img-player" type="file" alt="erro" class="form-control">
+        </div>
+        <div class="col-md-6 text-end" style="padding: 10px;">
             <button type="button" class="btn btn-secondary btn-sm me-3" id="btn-clear-player-fields" 
                 style="width: 150px;">Limpar</button>
             <button type="submit" class="btn btn-primary btn-sm" id="btn-create-player" 
-                style="width: 150px;">Cadastrar</button>
+                style="width: 150px;">Cadastrar jogador</button>
         </div>
-    </div>
+    </div><br>
     `;
 
     const FiltersField = document.getElementById("filters");
@@ -86,6 +93,19 @@ function openPlayerRegisterFields() {
 
     const buttonCreatePlayer = document.getElementById('btn-create-player');
     buttonCreatePlayer.addEventListener('click', createPlayer);
+
+    const imagemInput = document.getElementById('filter-img-player');
+    imagemInput.addEventListener('change', function() {
+        const imagem = this.files[0];
+
+        if (imagem) {
+            const allowedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+            if (! allowedFormats.includes(imagem.type)) {
+                exibirToastErro("Formato de imagem inválido. Por favor, selecione um arquivo PNG, JPG ou JPEG.");
+                this.value = '';
+            }
+        }
+    });
 }
 
 function generateAttributeFields() {
@@ -136,6 +156,8 @@ function createPlayer() {
     attributes.forEach(attribute => {
         atributos[attribute] = document.getElementById(`filter-${attribute}-value`).value;
     });
+    const imagemInput = document.getElementById('filter-img-player');
+    const imagem = imagemInput.files[0];
 
     const playerData = {
         nome,
@@ -166,12 +188,23 @@ function createPlayer() {
 
     }
 
+    const formData = new FormData();
+    formData.append('imagem', imagem);
+    formData.append('nome', nome);
+    formData.append('posicao', posicao);
+    formData.append('nacionalidade', nacionalidade);
+    formData.append('peso', peso);
+    formData.append('altura', altura);
+    formData.append('dataNascimento', dataNascimento);
+    formData.append('clube', clube);
+
+    for (const key in atributos) {
+        formData.append(key, atributos[key]);
+    }
+
     fetch('../actions/action_create_player.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(playerData)
+        body: formData
     })
     .then(response => response.json())
     .then(data => {

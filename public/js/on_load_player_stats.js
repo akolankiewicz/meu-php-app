@@ -23,9 +23,9 @@ async function showPlayerStats(parseData) {
 
     const imgElement = document.getElementById('player-img');
     if (player.imagem) {
-        imgElement.src = `img/${player.imagem}`;
+        imgElement.src = `${player.imagem}`;
     } else {
-        imgElement.src = 'img/default.png';
+        imgElement.src = 'img-players/default.png';
         exibirToastAlert('O Jogador não possuí imagem cadastrada!')
     }
 

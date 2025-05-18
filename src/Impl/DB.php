@@ -73,6 +73,9 @@ final class DB {
         ];
     }
 
+    /**
+     * @throws \Exception
+     */
     public function insertNewPlayerAndReturnYourIdName(array $userData): array
     {
         $nome = $userData['nome'];
@@ -107,6 +110,7 @@ final class DB {
         $impulsao = $userData['impulsao'] ?? null;
         $folego = $userData['folego'] ?? null;
         $forca = $userData['forca'] ?? null;
+        $imagem = $userData['imagem'] ?? null;
         
         $sql = "INSERT INTO players (
                     nome, posicao, nacionalidade, peso, altura, data_nascimento, clube,
@@ -114,14 +118,14 @@ final class DB {
                     visao_de_jogo, cruzamento, passe_curto, passe_longo, curva, agilidade,
                     equilibrio, reacao, controle_de_bola, drible, agressividade, interceptacao,
                     precisao_no_cabeceio, nocao_defensiva, desarme, carrinho, impulsao, folego,
-                    forca
+                    forca, imagem
                 ) VALUES (
                     :nome, :posicao, :nacionalidade, :peso, :altura, :dataNascimento, :clube,
                     :aceleracao, :pique, :finalizacao, :forca_do_chute, :chute_de_longe, :penalti,
                     :visao_de_jogo, :cruzamento, :passe_curto, :passe_longo, :curva, :agilidade,
                     :equilibrio, :reacao, :controle_de_bola, :drible, :agressividade, :interceptacao,
                     :precisao_no_cabeceio, :nocao_defensiva, :desarme, :carrinho, :impulsao, :folego,
-                    :forca
+                    :forca, :imagem
                 )";
 
         $stmt = $this->pdo->prepare($sql);
@@ -158,6 +162,7 @@ final class DB {
         $stmt->bindValue(':impulsao', $impulsao);
         $stmt->bindValue(':folego', $folego);
         $stmt->bindValue(':forca', $forca);
+        $stmt->bindValue(':imagem', $imagem);
         $result = $stmt->execute();
 
         if (! $result) {
@@ -177,6 +182,9 @@ final class DB {
 
     private function __clone() { }
 
+    /**
+     * @throws \Exception
+     */
     public function __wakeup() {
         throw new \Exception("Cannot unserialize singleton");
     }

@@ -6,8 +6,17 @@ use App\Impl\RegisterPlayer;
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();
 
-$json_data = file_get_contents("php://input");
-$player_data = json_decode($json_data, true);
+
+$player_data = $_POST;
+$imagem = $_FILES['imagem'] ?? null;
+
+if ($imagem && $imagem['error'] === UPLOAD_ERR_OK) {
+    $caminhoDestino = __DIR__ . '/../img-players/' . uniqid() . '_' . basename($imagem['name']);
+    if (move_uploaded_file($imagem['tmp_name'], $caminhoDestino)) {
+        $caminhoRelativo = 'img-players/' . basename($caminhoDestino);
+        $player_data['imagem'] = $caminhoRelativo;
+    }
+}
 
 $register = new RegisterPlayer($db);
 try {
