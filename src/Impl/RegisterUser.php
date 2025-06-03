@@ -34,7 +34,7 @@ class RegisterUser implements RegisterInterface
 
         if (strpos($dataUser['email'], '@') === false || strlen($dataUser['email']) < 10) {
             $errors['email'] = "O email deve conter '@' e ter no mínimo 10 caracteres.";
-        } elseif (!filter_var($dataUser['email'], FILTER_VALIDATE_EMAIL)) {
+        } elseif (! filter_var($dataUser['email'], FILTER_VALIDATE_EMAIL)) {
             $errors['email'] = "O formato do email é inválido.";
         }
 

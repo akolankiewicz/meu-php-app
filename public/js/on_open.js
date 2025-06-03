@@ -8,7 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            document.getElementById('session-user-name').textContent = data.nome;
+            if (window.location.pathname === '/index.php') {
+                document.getElementById('session-user-name').textContent = data.nome;
+            }
+
+            if (window.location.pathname === '/player_stats.php') {
+                localStorage.setItem('sessionUserData', JSON.stringify(data));
+            }
         })
         .catch(error => {
             console.error('Ocorreu um erro:', error);

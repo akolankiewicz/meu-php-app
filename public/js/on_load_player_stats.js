@@ -9,15 +9,53 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            showPlayerStats(data);
+            const userData = localStorage.getItem('sessionUserData');
+            if (userData) {
+                showButtonStatsPlayer(JSON.parse(userData));
+            }
+            showPlayerStats(data, userData);
         })
         .catch(error => {
-            console.error('Ocorreu um erro ao buscar o jogador:', error);
-            document.getElementById('field_player_name').textContent = 'Ocorreu um erro ao buscar o jogador!';
+            console.error('Ocorreu um erro ao buscar dados de sessão:', error);
+            document.getElementById('player-stats-buttons').textContent = 'Ocorreu um erro ao buscar o jogador!';
         });
 });
 
-async function showPlayerStats(parseData) {
+async function showButtonStatsPlayer(userData) {
+    const fieldPlayerStatsButtons = document.getElementById('player-stats-buttons');
+    if (userData.type_user === 1) {
+        fieldPlayerStatsButtons.innerHTML = `
+<div class="row mt-1">
+    <div class="col-md-5">
+            <button type="submit" class="btn btn-secondary btn-sm w-100" id="btn-edit-player" style="height: 100px;">
+        Editar jogador</button>      
+    </div>
+    <div class="col-md-2">  
+    </div>
+    <div class="col-md-5">
+            <button type="submit" class="btn btn-danger btn-sm w-100" id="btn-delete-player" style="height: 100px;">
+        Excluir jogador</button>
+    </div>
+</div>
+        `;
+    } else {
+        fieldPlayerStatsButtons.innerHTML = `
+<div class="row mt-1">
+    <div class="col-md-12">
+        <p style="text-align: center; color: lightslategrey">Você não tem permissão para realizar ações nesse jogador</p>
+    </div>
+</div>
+        `;
+    }
+
+    const btnEditPlayer = document.getElementById('btn-edit-player');
+    btnEditPlayer.addEventListener('click', editPlayer);
+
+    const btnDeletePlayer = document.getElementById('btn-delete-player');
+    btnDeletePlayer.addEventListener('click', deletePlayer);
+}
+
+async function showPlayerStats(parseData, sessionData) {
     const player = parseData[''];
     if (!player) return;
 
@@ -46,7 +84,7 @@ async function showPlayerStats(parseData) {
     const passe = (player.visao_de_jogo + player.cruzamento + player.passe_curto + player.passe_longo +
         player.curva) / 5;
     const drible = (player.agilidade + player.equilibrio + player.reacao + player.controle_de_bola +
-        player.drible + player.agressividade) / 5;
+        player.drible + player.agressividade) / 6;
     const defesa = (player.interceptacao + player.precisao_no_cabeceio + player.nocao_defensiva +
         player.desarme + player.carrinho) / 5;
     const fisico = (player.impulsao + player.folego + player.forca) / 3;
@@ -172,4 +210,16 @@ function radarChart(ritmo, finalizacao, passe, drible, defesa, fisico) {
             }
         }
     });
+}
+
+function editPlayer() {
+    //editar jogador
+}
+
+function deletePlayer() {
+    if (confirm('Deseja apagar todos os dados sobre este jogador? esses dados serão excluídos para sempre.')) {
+        exibirToastErro('Jogador removido!');
+    } else {
+        exibirToastAlert('Operação cancelada!');
+    }
 }

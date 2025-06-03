@@ -37,7 +37,10 @@ session_start();
             </div>
         </div>
         <div class="row mt-1 box-player">
-            <div class="col-12">
+            <div id="player-stats-buttons"></div>
+        </div>
+        <div class="row mt-1 box-player">
+            <div class="col-md-12">
                 <div class="text-center">
                     <h1>Atributos</h1>
                     <div id="atributos-container" class="container d-flex justify-content-center flex-column align-items-center"></div>
@@ -48,6 +51,7 @@ session_start();
 
     <footer id="footer-footer" class="bg-dark text-white py-4 mt-7"></footer>
 
+    <script src="js/on_open.js"></script>
     <script src="js/on_load_player_stats.js"></script>
     <script src="js/utils.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

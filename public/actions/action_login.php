@@ -12,6 +12,7 @@ try {
         session_start();
         $_SESSION['user_id'] = $userData['id'];
         $_SESSION['user_name'] = $userData['nome'];
+        $_SESSION['type_user'] = $userData['type_user'];
         $_SESSION['email'] = $userData['email'];
         $_SESSION['auth'] = true;
         header('Location: ../index.php');

@@ -35,6 +35,6 @@ final class Login
 
     private function verifyIfExistsEmail(string $email): ?array
     {
-        return $this->db->queryAndFetch("SELECT id, nome, email, senha FROM users WHERE email = '" . $email . "'" );
+        return $this->db->queryAndFetch("SELECT id, nome, email, senha, type_user FROM users WHERE email = '" . $email . "'" );
     }
 }
