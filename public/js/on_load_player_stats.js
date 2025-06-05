@@ -217,9 +217,28 @@ function editPlayer() {
 }
 
 function deletePlayer() {
+    const params = new URLSearchParams(window.location.search);
+    const playerId = params.get('player_id');
     if (confirm('Deseja apagar todos os dados sobre este jogador? esses dados serão excluídos para sempre.')) {
-        exibirToastErro('Jogador removido!');
+        fetch(`../actions/action_delete_player.php?player_id=${playerId}`)
+            .then(response => {
+                if (!response.ok) {
+                    exibirToastErro(`Erro na requisição: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(async data => {
+                console.log(data);
+                if (data.success) {
+                    exibirToastSuccess(data.success);
+                } else {
+                    exibirToastErro(`Ocorreu um erro ao deletar o jogador ID ${playerId}`)
+                }
+            })
+            .catch(error => {
+                console.error('Ocorreu ao deletar jogador:', error);
+                document.getElementById('player-stats-buttons').textContent = 'Erro ao deletar jogador!';
+            });
     } else {
         exibirToastAlert('Operação cancelada!');
-    }
-}
+    }}

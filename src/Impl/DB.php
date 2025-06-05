@@ -180,6 +180,20 @@ final class DB {
         }
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function deletePlayer($playerId): void
+    {
+        $sql = "DELETE FROM players WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $playerId);
+        $result = $stmt->execute();
+        if (! $result) {
+            throw new \Exception("Erro ao deletar os dados");
+        }
+    }
+
     private function __clone() { }
 
     /**
