@@ -4,31 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tela de Login</title>
-    <link rel="stylesheet" href="css/login-registration.css">
+    <link rel="stylesheet" href="css/login-dark-style.css">
     <link rel="icon" href="img/ascend_stats_circle_border.png" type="image/x-icon">
 </head>
-<body>
-    <a href="register-screen.html">Não tem cadastro? clique aqui!</a>
-    <div class="box">
-        <form action="actions/action_login.php" method="post">
-            <fieldset>
-                <legend><b> FORMULÁRIO DE LOGIN </b></legend>
-                <br><br>
-                <br><br>
-                <div class="inputBox">
-                    <input type="text" name="email" id="email" class="inputUser" required>
-                    <label for="email" class="labelinput">E-mail</label>
+<body class="dark-theme">
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-logo">
+                <img src="img/ascend_stats_circle_border.png" alt="Ascend Stats Logo">
+                <h1>Ascend Stats</h1>
+            </div>
+            <h2>Acesse sua conta</h2>
+            <p>Entre com suas credenciais para continuar</p>
+        </div>
+
+        <form action="actions/action_login.php" method="post" class="login-form">
+            <div class="form-group">
+                <label for="email">
+                    <i class="bi bi-envelope"></i>
+                    <span>E-mail</span>
+                </label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">
+                    <i class="bi bi-lock"></i>
+                    <span>Senha</span>
+                </label>
+                <div class="password-input">
+                    <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+                    <i class="bi bi-eye-slash toggle-password"></i>
                 </div>
-                <br><br>
-                <div class="inputBox">
-                    <input type="password" name="senha" id="senha" class="inputUser" required>
-                    <label for="senha" class="labelinput"> Senha</label><br>
+            </div>
+
+            <div class="form-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Lembrar-me</label>
                 </div>
-                <br><br>
-                <input type="submit" name="submit" id="submit">
-                <br><br>
-            </fieldset>
+                <a href="#" class="forgot-password">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit" class="login-button">
+                <span>Entrar</span>
+                <i class="bi bi-arrow-right"></i>
+            </button>
         </form>
+
+        <div class="login-footer">
+            <p>Não tem uma conta? <a href="register-screen.html" class="register-link">Cadastre-se</a></p>
+        </div>
     </div>
+</div>
 </body>
 </html>

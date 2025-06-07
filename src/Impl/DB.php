@@ -47,31 +47,34 @@ final class DB {
      */
     public function insertNewUserAndReturnYourId(array $userData): array
     {
-        $stmt = $this->pdo->prepare('INSERT INTO users (type_user, nome, senha, email, telefone, data_nascimento, cidade, 
-            estado, endereco) VALUES(:type_user, :nome, :senha, :email, :telefone, :data_nascimento, :cidade, :estado, :endereco)');
+        $stmt = $this->pdo->prepare('
+        INSERT INTO users (type_user, nome, senha, email, telefone, data_nascimento, cidade, estado, endereco)
+        VALUES (:type_user, :nome, :senha, :email, :telefone, :data_nascimento, :cidade, :estado, :endereco)
+        RETURNING id, nome
+        ');
+
         $stmt->bindValue(':type_user', 2);
         $stmt->bindValue(':nome', $userData['nome']);
         $stmt->bindValue(':senha', password_hash($userData['senha'], PASSWORD_DEFAULT));
-        $stmt->bindValue(':email',$userData['email']);
+        $stmt->bindValue(':email', $userData['email']);
         $stmt->bindValue(':telefone', $userData['telefone']);
         $stmt->bindValue(':data_nascimento', $userData['data_nascimento']);
         $stmt->bindValue(':cidade', $userData['cidade']);
         $stmt->bindValue(':estado', $userData['estado']);
         $stmt->bindValue(':endereco', $userData['endereco']);
-        $result = $stmt->execute();
 
-        if (! $result) {
+        if (! $stmt->execute()) {
             throw new \Exception("Erro ao inserir os dados");
         }
 
-        $id = $this->queryAndFetch("SELECT currval('users_id_seq');")['currval'];
-        $nome = $this->queryAndFetch("SELECT nome FROM users WHERE id = " . $id);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         return [
-        'id' => $id,
-        'nome' => $nome['nome'],
+            'id' => $user['id'],
+            'nome' => $user['nome']
         ];
     }
+
 
     /**
      * @throws \Exception

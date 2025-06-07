@@ -2,6 +2,7 @@
 
 use App\Impl\DB;
 use App\Impl\RegisterUser;
+use App\Impl\Login;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();
@@ -19,13 +20,28 @@ $dataUser = [
 ];
 
 $register = new RegisterUser($db);
+$login = new Login($db);
+
 if ($register->validateFieldsToInsert($dataUser) === true) {
     try {
-        $loginIdAndName = $register->registerAndReturnYourId($dataUser);
+        $user = $register->registerAndReturnYourId($dataUser);
+        $userData = $login->doLogin($dataUser['email'], $dataUser['senha']);
+
+        if ($userData) {
+            session_start();
+            $_SESSION['user_id'] = $userData['id'];
+            $_SESSION['user_name'] = $userData['nome'];
+            $_SESSION['type_user'] = $userData['type_user'];
+            $_SESSION['email'] = $userData['email'];
+            $_SESSION['auth'] = true;
+
+            header('Location: ../index.php');
+        } else {
+            throw new Exception("Erro ao autenticar após o cadastro.");
+        }
     } catch (Exception $e) {
-        throw new \Exception("Erro ao inserir os dados: " . $e->getMessage());
+        header('Location: ../register-screen.php?error=' .  urlencode('Email já cadastrado'));
     }
-    header('Location: ../action/action_set_user_data.php?id=' . $loginIdAndName['id'] . '&nome=' . $loginIdAndName['nome']);
 } else {
-    header('Location: ../register-screen.php?error=' . 'erro');
+    header('Location: ../register-screen.php?error=' . urlencode('Dados inválidos!'));
 }
