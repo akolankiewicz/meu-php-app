@@ -54,16 +54,18 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                             <div class="contact-item">
                                 <i class="bi bi-telephone-fill contact-icon"></i>
-                                <span>(49) 98806-2114</span>
+                                <span>(49) 98888-8888</span>
                             </div>
                         </div>
                         
                         <div class="newsletter-section">
-                            <h4>Receba novidades</h4>
+                            <h4> <i title="Preencha seu email e envie para receber o passo a passo!" 
+                            class="bi bi-info-circle header-icon" 
+                                style="margin-left: 10px; margin-right: 10px;"></i> Adquira meu ebook! </h4>
                             <form class="newsletter-form">
                                 <div class="input-group">
                                     <input type="email" placeholder="Seu email" class="email-input">
-                                    <button type="submit" class="send-button">
+                                    <button class="send-button" id="send-button">
                                         <i class="bi bi-send send-icon"></i>
                                     </button>
                                 </div>
@@ -96,5 +98,13 @@ document.addEventListener("DOMContentLoaded", function () {
         footerContainer.innerHTML = footerHTML;
     } else {
         console.error('Elemento com id "footer-footer" não encontrado.');
+    }
+
+    const sendButton = document.getElementById('send-button');
+    if (sendButton) {
+        sendButton.addEventListener('click', function (evt) {
+            evt.preventDefault();
+            alert('Eu ainda não tenho ebook kkkkkkk quem sabe no futuro...');
+        });
     }
 });

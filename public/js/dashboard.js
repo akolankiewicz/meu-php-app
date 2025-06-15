@@ -18,11 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         renderBarChart(parseData.barChartData);
         renderPizzaChart(parseData.pizzaChartData);
     } catch (error) {
-        console.error('Erro ao carregar dashboard:', error);
-        // Fallback para dados de exemplo se houver erro
-        renderDashboardCardsExample();
-        renderBarChartExample();
-        renderPizzaChartExample();
+        console.error(error);
     }
 });
 
@@ -49,21 +45,10 @@ function renderDashboardCards(data) {
         container.appendChild(col);
     });
 
-    // Adiciona event listeners após criar os cards
     const cardTotalPlayers = document.getElementById('t-p');
     if (cardTotalPlayers) {
         cardTotalPlayers.addEventListener('click', openFiltersForAllPlayers);
     }
-}
-
-function renderDashboardCardsExample() {
-    // Dados de exemplo para fallback
-    const dadosExemplo = {
-        totalJogadores: 11,
-        totalColaboradores: 123,
-        totalPlanosDeTreino: 15
-    };
-    renderDashboardCards(dadosExemplo);
 }
 
 function renderBarChart(data) {
@@ -116,17 +101,6 @@ function renderBarChart(data) {
     chart.render();
 }
 
-function renderBarChartExample() {
-    // Dados de exemplo para fallback
-    const dadosExemplo = {
-        "Brasil": 6,
-        "Portugal": 1,
-        "Espanha": 1,
-        "Argentina": 3
-    };
-    renderBarChart(dadosExemplo);
-}
-
 function renderPizzaChart(data) {
     const chart = new CanvasJS.Chart("pizza-chart", {
         animationEnabled: true,
@@ -153,25 +127,25 @@ function renderPizzaChart(data) {
                     {
                         y: data.totalATA,
                         indexLabel: "Atacantes",
-                        color: "#667eea",
+                        color: "#5b71d7",
                         click: openFiltersForAtacantes
                     },
                     {
                         y: data.totalMEI,
                         indexLabel: "Meias",
-                        color: "#f093fb",
+                        color: "#8f299b",
                         click: openFiltersForMeias
                     },
                     {
                         y: data.totalZAG,
                         indexLabel: "Zagueiros",
-                        color: "#4facfe",
+                        color: "#316394",
                         click: openFiltersForZagueiros
                     },
                     {
                         y: data.totalGOL,
                         indexLabel: "Goleiros",
-                        color: "#43e97b",
+                        color: "#32b45a",
                         click: openFiltersForGoleiros
                     }
                 ]
@@ -181,18 +155,7 @@ function renderPizzaChart(data) {
     chart.render();
 }
 
-function renderPizzaChartExample() {
-    // Dados de exemplo para fallback
-    const dadosExemplo = {
-        totalATA: 3,
-        totalMEI: 2,
-        totalZAG: 4,
-        totalGOL: 2
-    };
-    renderPizzaChart(dadosExemplo);
-}
 
-// Função para gerar cores para o gráfico de barras
 function getBarColor(nacionalidade) {
     const colors = {
         "Brasil": "#11998e",
