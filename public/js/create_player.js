@@ -3,14 +3,14 @@ function openPlayerRegisterFields() {
     <div class="row mt-4">
         <div class="col-md-3">
             <div class="mb-3">
-                <label for="filter-name">Nome do jogador</label>
+                <label for="filter-name" style="color: white">Nome do jogador</label>
                 <input type="text" class="form-control form-control-sm" id="filter-nome"
                     placeholder="Nome" required>
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-position">Posição</label>
+                <label for="filter-position" style="color: white">Posição</label>
                 <select required class="form-select form-select-sm" id="filter-posicao">
                     <option value=""></option>
                     <option value="ATA">ATA</option>
@@ -22,41 +22,41 @@ function openPlayerRegisterFields() {
         </div>
         <div class="col-md-2">
             <div class="mb-3">
-                <label for="filter-nacionalidade">Nacionalidade</label>
+                <label for="filter-nacionalidade" style="color: white">Nacionalidade</label>
                 <input type="text" class="form-control form-control-sm" required
                     id="filter-nacionalidade" placeholder="País">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-peso">Peso</label>
+                <label for="filter-peso" style="color: white">Peso</label>
                 <input type="number" class="form-control form-control-sm"
                     id="filter-peso" placeholder="000" required>
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-altura">Altura</label>
+                <label for="filter-altura" style="color: white">Altura</label>
                 <input type="number" class="form-control form-control-sm"
                     id="filter-altura" placeholder="0.00" required>
             </div>
         </div>
         <div class="col-md-2">
             <div class="mb-3">
-                <label for="filter-data-nascimento">Data de Nascimento</label>
+                <label for="filter-data-nascimento" style="color: white">Data de Nascimento</label>
                 <input type="text" class="form-control form-control-sm" id="filter-data-nascimento"
                     placeholder="00/00/0000" required>
             </div>
         </div>
         <div class="col-md-2">
             <div class="mb-3">
-                <label for="filter-data-nascimento">Nome do clube</label>
+                <label for="filter-data-nascimento" style="color: white">Nome do clube</label>
                 <input type="text" class="form-control form-control-sm" id="filter-clube"
                     placeholder="Clube" required>
             </div>
         </div>
     </div>
-    <p class="mt-4" style="color: #555555; font-size: 20px">Filtros por atributo</p>
+    <p class="mt-4" style="color: #ffffff; font-size: 20px">Atributos</p>
     <hr class="mt-3 mb-3"><br>
     <div class="row mt-2">
         <!-- Rever se pode isso ou melhor colocar alguma tag html com id -->
@@ -66,14 +66,14 @@ function openPlayerRegisterFields() {
     <hr class="mt-3 mb-3">
     <div class="row mt-2">
         <div class="col-md-6">
-            <label for="img-player" style="color: #555555; font-size: 20px; padding: 10px;">Imagem do Jogador (Opcional)
+            <label for="img-player" style="color: #ffffff; font-size: 20px; padding: 10px;">Imagem do Jogador (Opcional)
                 </label>
             <input id="filter-img-player" type="file" alt="erro" class="form-control">
         </div>
         <div class="col-md-6 text-end" style="padding: 10px;">
-            <button type="button" class="btn btn-secondary btn-sm me-3" id="btn-clear-player-fields" 
+            <button type="button" class="btn-clean me-3" id="btn-clear-player-fields" 
                 style="width: 150px;">Limpar</button>
-            <button type="submit" class="btn btn-primary btn-sm" id="btn-create-player" 
+            <button type="submit" class="btn-apply me-3" id="btn-create-player" 
                 style="width: 150px;">Cadastrar jogador</button>
         </div>
     </div><br>
@@ -124,7 +124,7 @@ function generateAttributeFields() {
         <div class="col-md-3">
             <div class="row g-2 align-items-center">
                 <div class="col-md-4">
-                    <label style="font-size: 15px" for="filter-${attribute}">${capitalizedAttribute}</label>
+                    <label style="font-size: 15px; color: white" for="filter-${attribute}">${capitalizedAttribute}</label>
                 </div>
                 <div class="col-md-5">
                     <input required type="text" class="form-control form-control-sm" 

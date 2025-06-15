@@ -26,13 +26,18 @@ async function showButtonStatsPlayer(userData) {
     if (userData.type_user === 1) {
         fieldPlayerStatsButtons.innerHTML = `
 <div class="row mt-1">
-    <div class="col-md-5">
-            <button type="submit" class="btn btn-secondary btn-sm w-100" id="btn-edit-player" style="height: 100px;">
+    <h3 style="text-align: center; color: white">Ações</h3>
+</div>
+<div class="row mt-1">
+    <div class="col-md-4">
+            <button type="submit" class="btn btn-primary btn-sm w-100" id="btn-edit-player" style="height: 100px;">
+        Plano de treino</button>      
+    </div>
+    <div class="col-md-4">
+                <button type="submit" class="btn btn-success btn-sm w-100" id="btn-edit-player" style="height: 100px;">
         Editar jogador</button>      
     </div>
-    <div class="col-md-2">  
-    </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
             <button type="submit" class="btn btn-danger btn-sm w-100" id="btn-delete-player" style="height: 100px;">
         Excluir jogador</button>
     </div>
@@ -40,6 +45,9 @@ async function showButtonStatsPlayer(userData) {
         `;
     } else {
         fieldPlayerStatsButtons.innerHTML = `
+<div class="row mt-1">
+    <h3 style="text-align: center; color: white">Ações</h3>
+</div>
 <div class="row mt-1">
     <div class="col-md-12">
         <p style="text-align: center; color: lightslategrey">Você não tem permissão para realizar ações nesse jogador</p>

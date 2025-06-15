@@ -15,9 +15,99 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link href="css/player_stats.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="css/footer.css" rel="stylesheet">
+    <link href="css/navbar-styles.css" rel="stylesheet">
 </head>
 <body>
-    <header id="navbar-header"></header>
+<header id="navbar-header">
+    <nav class="modern-navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <div class="logo-container">
+                    <img src="img/ascend_stats_circle_border.png" alt="Logo" class="logo-image" id="logoImage">
+                    <div class="logo-placeholder" id="logoPlaceholder">
+                        <i class="bi bi-hexagon-fill logo-icon"></i>
+                    </div>
+                </div>
+                <span class="brand-name">Ascend Stats</span>
+            </div>
+
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.php" class="nav-link">
+                            <i class="bi bi-speedometer2 nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="players.php" class="nav-link">
+                            <i class="bi bi-people-fill nav-icon"></i>
+                            <span>Jogadores</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#colaboradores" class="nav-link">
+                            <i class="bi bi-person-badge-fill nav-icon"></i>
+                            <span>Colaboradores</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="navbar-actions">
+                <form action="actions/action_logout.php">
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="bi bi-box-arrow-right logout-icon"></i>
+                        <span class="logout-text">Logout</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Menu Mobile Toggle -->
+            <button class="mobile-toggle" id="mobileToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <ul class="mobile-nav-links">
+                    <li class="mobile-nav-item">
+                        <a href="index.php" class="mobile-nav-link">
+                            <i class="bi bi-speedometer2 mobile-nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="players.php" class="mobile-nav-link">
+                            <i class="bi bi-people-fill mobile-nav-icon"></i>
+                            <span>Jogadores</span>
+                        </a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#colaboradores" class="mobile-nav-link">
+                            <i class="bi bi-person-badge-fill mobile-nav-icon"></i>
+                            <span>Colaboradores</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="mobile-logout">
+                    <form action="actions/action_logout.php">
+                        <button class="mobile-logout-btn">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 
     <main class="main-container">
         <div class="row mt-2 box-player">
@@ -52,12 +142,12 @@ session_start();
 
     <footer id="footer-footer" class="bg-dark text-white py-4 mt-7"></footer>
 
+    <script src="js/navbar-script.js"></script>
     <script src="js/on_open.js"></script>
     <script src="js/on_load_player_stats.js"></script>
     <script src="js/utils.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tYhFbargfWtaeZUBDzF4A1jzE+4jBGTFe1m5b0jaQmAzm0fj1Qp6F8Q+" crossorigin="anonymous"></script>
-    <script src="js/navbar.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/search_player.js"></script>
 </body>

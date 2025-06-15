@@ -1,0 +1,338 @@
+/* ===== DASHBOARD MODERNA - ESTILO ATUALIZADO ===== */
+
+/* Reset e configurações base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #16213e 75%, #1a1a2e 100%) fixed;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Título principal */
+.principal-title {
+    font-size: clamp(24px, 4vw, 36px);
+    color: #ffffff;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+
+.login-intro {
+    padding: 30px 20px;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(75, 0, 130, 0.1) 100%);
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+}
+
+/* Container principal da dashboard */
+.dashboard {
+    margin-top: 120px;
+    padding: 0 20px 40px;
+}
+
+/* Cards da dashboard */
+.dashboard-cards {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Estilização individual dos cards */
+.dashboard-card-hover {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-card-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.dashboard-card-hover:hover::before {
+    opacity: 1;
+}
+
+.dashboard-card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    cursor: pointer;
+    box-shadow:
+            0 12px 40px rgba(0, 0, 0, 0.4),
+            0 0 20px rgba(138, 43, 226, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Cards específicos por cor */
+.bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.bg-info {
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%) !important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+}
+
+/* Conteúdo dos cards */
+.dashboard-card-hover h5 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+}
+
+.dashboard-card-hover h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+/* Container dos gráficos */
+.dashboard-charts {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 20px;
+    margin-bottom: 50px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Containers individuais dos gráficos */
+.bar-chart, .pizza-chart {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.bar-chart:hover, .pizza-chart:hover {
+    transform: translateY(-2px);
+    box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Ajustes para os gráficos CanvasJS */
+#bar-chart, #pizza-chart {
+    min-height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Estilização específica para CanvasJS */
+.canvasjs-chart-canvas {
+    border-radius: 12px !important;
+}
+
+.canvasjs-chart-container {
+    border-radius: 12px !important;
+}
+
+/* Links da dashboard */
+.dashboard-links:visited,
+.dashboard-links:link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Botões de filtro */
+.btn-filter-players {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-filter-players:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.3),
+            0 0 20px rgba(138, 43, 226, 0.4);
+}
+
+/* Botões secundários e primários */
+.btn-secondary.btn-sm,
+.btn-primary.btn-sm {
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary.btn-sm:hover,
+.btn-primary.btn-sm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .player-nacionality,
+    .player-weight,
+    .player-height,
+    .player-age,
+    .player-birthdate,
+    .player-club {
+        display: none;
+    }
+
+    .dashboard-cards,
+    .dashboard-charts {
+        margin: 0 10px 30px;
+        padding: 20px 15px;
+    }
+
+    .bar-chart, .pizza-chart {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .login-intro {
+        padding: 20px 15px;
+    }
+
+    .principal-title {
+        font-size: 24px;
+    }
+
+    .dashboard-card-hover h2 {
+        font-size: 2rem;
+    }
+
+    #bar-chart, #pizza-chart {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard {
+        padding: 0 10px 30px;
+    }
+
+    .dashboard-charts {
+        padding: 20px 15px;
+    }
+
+    .bar-chart, .pizza-chart {
+        padding: 15px 10px;
+    }
+
+    #bar-chart, #pizza-chart {
+        min-height: 280px;
+    }
+}
+
+/* Animações adicionais */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-cards,
+.dashboard-charts {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.dashboard-card-hover {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.dashboard-card-hover:nth-child(1) { animation-delay: 0.1s; }
+.dashboard-card-hover:nth-child(2) { animation-delay: 0.2s; }
+.dashboard-card-hover:nth-child(3) { animation-delay: 0.3s; }
+
+/* Melhorias para acessibilidade */
+.dashboard-card-hover:focus {
+    outline: 2px solid rgba(138, 43, 226, 0.6);
+    outline-offset: 2px;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Estilos específicos para navbar (compatibilidade) */
+.navbar-dark .navbar-nav .nav-link.active {
+    color: rgba(255, 255, 255, 1);
+    font-weight: bold;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.85);
+}
+

@@ -28,7 +28,7 @@ function addQuickFilters() {
         <div class="col-md-2">
             <div class="mb-3">
                 <label for="i4"></label><input name="btn-filter-players" id="btn-quick-filter-players"
-                      type="submit" class="form-control form-control-sm btn-filter-players"
+                      type="submit" class="btn-filter form-control form-control-sm"
                             value="Filtrar">
             </div>
         </div>
@@ -51,14 +51,14 @@ function addAdvancedFilters() {
     <div class="row mt-4">
         <div class="col-md-3">
             <div class="mb-3">
-                <label for="filter-name">Nome do jogador</label>
+                <label for="filter-name" style="color: white">Nome do jogador</label>
                 <input type="text" class="form-control form-control-sm" id="filter-nome"
                     placeholder="Nome">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-position">Posição</label>
+                <label for="filter-position" style="color: white">Posição</label>
                 <select class="form-select form-select-sm" id="filter-posicao">
                     <option value="">Todas</option>
                     <option value="ATA">ATA</option>
@@ -70,48 +70,48 @@ function addAdvancedFilters() {
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-nacionalidade">Nacionalidade</label>
+                <label for="filter-nacionalidade" style="color: white">Nacionalidade</label>
                 <input type="text" class="form-control form-control-sm"
                     id="filter-nacionalidade" placeholder="País">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-peso">Peso</label>
+                <label for="filter-peso" style="color: white">Peso</label>
                 <input type="number" class="form-control form-control-sm"
                     id="filter-peso" placeholder="000">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-altura">Altura</label>
+                <label for="filter-altura" style="color: white">Altura</label>
                 <input type="number" class="form-control form-control-sm"
                     id="filter-altura" placeholder="0.00">
             </div>
         </div>
         <div class="col-md-1">
             <div class="mb-3">
-                <label for="filter-idade">Idade</label>
+                <label for="filter-idade" style="color: white">Idade</label>
                 <input type="number" class="form-control form-control-sm" id="filter-idade"
                     placeholder="00">
             </div>
         </div>
         <div class="col-md-2">
             <div class="mb-3">
-                <label for="filter-data-nascimento">Data de Nascimento</label>
+                <label for="filter-data-nascimento" style="color: white">Data de Nascimento</label>
                 <input type="text" class="form-control form-control-sm" id="filter-data-nascimento"
                     placeholder="00/00/0000">
             </div>
         </div>
         <div class="col-md-2">
             <div class="mb-3">
-                <label for="filter-data-nascimento">Nome do clube</label>
+                <label for="filter-data-nascimento" style="color: white">Nome do clube</label>
                 <input type="text" class="form-control form-control-sm" id="filter-clube"
                     placeholder="Clube">
             </div>
         </div>
     </div>
-    <p class="mt-4" style="color: #555555; font-size: 20px">Filtros por atributo</p>
+    <p class="mt-4" style="color: #ffffff; font-size: 20px">Filtros por atributo</p>
     <hr class="mt-3 mb-3">
     <div class="row mt-2">
         <!-- Rever se pode isso ou melhor colocar alguma tag html com id -->
@@ -119,9 +119,9 @@ function addAdvancedFilters() {
     </div>
     <div class="row mt-2">
         <div class="col-md-12 text-end">
-            <button type="button" class="btn btn-secondary btn-sm me-3" id="clear-filter-button" style="width: 150px;">
+            <button type="button" class="btn-clean me-3" id="clear-filter-button" style="width: 150px;">
                 Limpar</button>
-            <button type="submit" class="btn btn-primary btn-sm" id="btn-apply-advanced-filter" style="width: 150px;">
+            <button type="submit" class="btn-apply me-3" id="btn-apply-advanced-filter" style="width: 150px;">
                 Aplicar Filtros</button>
         </div>
     </div>
@@ -155,7 +155,7 @@ function generateAttributeFilters() {
         <div class="col-md-3">
             <div class="row g-2 align-items-center">
                 <div class="col-md-4">
-                    <label style="font-size: 15px" for="filter-${attribute}">${capitalizedAttribute}</label>
+                    <label style="font-size: 15px; color: white" for="filter-${attribute}">${capitalizedAttribute}</label>
                 </div>
                 <div class="col-md-3">
                     <select class="form-select form-select-sm" id="filter-${attribute}-operator">
