@@ -1,11 +1,13 @@
 <?php
 
+session_start();
+! $_SESSION['auth'] && header('Location: login-screen.html');
+
 use App\Impl\DB;
 use App\Impl\RegisterPlayer;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();
-
 
 $player_data = $_POST;
 $imagem = $_FILES['imagem'] ?? null;

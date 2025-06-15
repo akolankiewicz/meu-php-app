@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+! $_SESSION['auth'] && header('Location: login-screen.html');
+
 use App\Impl\DB;
 use App\Impl\SearchPlayer;
 

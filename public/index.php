@@ -123,6 +123,13 @@
                     <div id="pizza-chart"></div>
                 </div>
             </div>
+            <div class="row dashboard-charts">
+                <div id="recently-activity">
+                    <h3>Atividades Recentes</h3>
+                    <ul id="activity-list">
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 

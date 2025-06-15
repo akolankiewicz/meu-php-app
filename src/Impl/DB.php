@@ -175,6 +175,7 @@ final class DB {
         try {
             $id = $this->pdo->lastInsertId();
             $nome = $this->queryAndFetch("SELECT nome FROM players WHERE id = " . $id);
+            $this->insertActivity($nome[0]['nome'], date('d-m-Y H:i'), 'cadastrado', $_SESSION['user_id']);
 
             return ['id' => $id, 'nome' => $nome];
         } catch (PDOException $e) {
@@ -188,6 +189,7 @@ final class DB {
      */
     public function deletePlayer($playerId): void
     {
+        $playerName = $this->queryAndFetch("SELECT nome FROM players WHERE id = " . $playerId)[0];
         $sql = "DELETE FROM players WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $playerId);
@@ -195,14 +197,24 @@ final class DB {
         if (! $result) {
             throw new \Exception("Erro ao deletar os dados");
         }
+        $this->insertActivity($playerName['nome'], date('d-m-Y H:i'), 'deletado', $_SESSION['user_id']);
     }
-
-    private function __clone() { }
 
     /**
      * @throws \Exception
      */
-    public function __wakeup() {
-        throw new \Exception("Cannot unserialize singleton");
+    public function insertActivity($name, $date, $type, $operator)
+    {
+        $sql = "INSERT INTO atividade (nome, data, tipo, operador) VALUES (:name, :date, :type, :operator)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':name', $name);
+        $stmt->bindValue(':date', $date);
+        $stmt->bindValue(':type', $type);
+        $stmt->bindValue(':operator', $operator);
+        $result = $stmt->execute();
+
+        if (! $result) {
+            throw new \Exception("Erro ao inserir os dados");
+        }
     }
 }

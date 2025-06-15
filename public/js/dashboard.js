@@ -1,9 +1,5 @@
-// Dashboard JavaScript - Versão Modernizada
-// Compatível com o novo design glassmorphism
-
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        // Aguarda um pouco para garantir que o CanvasJS foi carregado
         await new Promise(resolve => setTimeout(resolve, 100));
 
         const response = await fetch('../actions/action_dashboard.php', {
@@ -17,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         renderDashboardCards(parseData.cardsData);
         renderBarChart(parseData.barChartData);
         renderPizzaChart(parseData.pizzaChartData);
+        await fetchActivities(parseData.activityData);
     } catch (error) {
         console.error(error);
     }
@@ -287,3 +284,113 @@ async function openFiltersForGoleiros() {
         }
     }
 }
+
+function showEmpty() {
+    const activityList = document.getElementById('activity-list');
+    activityList.innerHTML = '';
+    const emptyDiv = document.createElement('div');
+    emptyDiv.className = 'empty-state';
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'empty-state-icon';
+    iconDiv.textContent = '📋';
+    const p = document.createElement('p');
+    p.textContent = 'Nenhuma atividade recente encontrada';
+    emptyDiv.appendChild(iconDiv);
+    emptyDiv.appendChild(p);
+    activityList.appendChild(emptyDiv);
+}
+
+function formatTimeAgo(date) {
+    const now = new Date();
+    const diffInMinutes = Math.floor((now - date) / (1000 * 60));
+
+    if (diffInMinutes < 1) return 'Agora mesmo';
+    if (diffInMinutes < 60) return `${diffInMinutes}m atrás`;
+
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return `${diffInHours}h atrás`;
+
+    const diffInDays = Math.floor(diffInHours / 24);
+    return `${diffInDays}d atrás`;
+}
+
+function createActivityItem(activity) {
+    const item = document.createElement('li');
+    item.className = `activity-item ${activity.type}`;
+
+    const timeAgo = formatTimeAgo(new Date(activity.timestamp));
+
+    item.innerHTML = `
+        <div class="activity-time">${timeAgo}</div>
+        <div class="activity-title">
+            <span class="activity-icon ${activity.type}"></span>
+            ${activity.title}
+        </div>
+        <div class="activity-description">${activity.description}</div>
+    `;
+
+    return item;
+}
+
+function loadActivities(activities) {
+    document.getElementById('activity-list').innerHTML = '';
+
+    if (!activities || activities.length === 0) {
+        showEmpty();
+        return;
+    }
+
+    const sortedActivities = activities.sort((a, b) =>
+        new Date(b.timestamp) - new Date(a.timestamp)
+    );
+
+    sortedActivities.forEach(activity => {
+        const item = createActivityItem(activity);
+        document.getElementById('activity-list').appendChild(item);
+    });
+}
+async function fetchActivities(data) {
+    const recentlyActivities = assembleActivitiesArray(data);
+    loadActivities(recentlyActivities);
+}
+
+function assembleActivitiesArray(data) {
+    return data.map((item) => {
+        const [datePart, timePart] = item.data.split(' ');
+        const [day, month, year] = datePart.split('-');
+        const formattedDate = `${year}-${month}-${day}T${timePart}:00`;
+        const originalDate = new Date(formattedDate);
+        const adjustedDate = new Date(originalDate.getTime() - 3 * 60 * 60 * 1000);
+
+        let activity = {
+            type: '',
+            title: '',
+            description: '',
+            timestamp: adjustedDate
+        };
+
+        switch (item.tipo) {
+            case 'cadastrado':
+                activity.type = 'player-registered';
+                activity.title = 'Jogador cadastrado recentemente';
+                activity.description = `${item.nome} foi cadastrado na plataforma`;
+                break;
+
+            case 'deletado':
+                activity.type = 'player-deleted';
+                activity.title = 'Jogador excluído recentemente';
+                activity.description = `${item.nome} foi removido do sistema`;
+                break;
+
+            case 'colaborador':
+                activity.type = 'collaborator-added';
+                activity.title = 'Novo colaborador cadastrado';
+                activity.description = `${item.nome} é o mais novo colaborador`;
+                break;
+        }
+
+        return activity;
+    });
+}
+
+

@@ -65,6 +65,16 @@ final class Dashboard {
 
         return $nationalities;
     }
+
+    public function getActivityData(): array
+    {
+        return $this->db->queryAndFetch("
+            SELECT DISTINCT ON (tipo) *
+            FROM atividade
+            WHERE tipo IN ('cadastrado', 'deletado', 'colaborador')
+            ORDER BY tipo, id DESC;
+        ");
+    }
 }
 
 

@@ -139,7 +139,7 @@ function clearFieldsFilters(showConfirm) {
     if (showConfirm) {
         clear = confirm('Deseja realmente limpar os campos preenchidos? Você perderá o processo atual.');
     } else {
-        clear = false;
+        clear = true;
     }
 
     if (clear) {
