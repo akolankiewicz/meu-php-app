@@ -79,13 +79,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p>&copy; 2025 Arthur Kolankiewicz. Todos os direitos reservados.</p>
                     </div>
                     <div class="footer-social-icons">
-                        <a href="#" class="footer-social-icon">
+                        <a href="https://www.instagram.com/akolankiewicz/" class="footer-social-icon">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="#" class="footer-social-icon">
+                        <a href="https://www.linkedin.com/in/arthur-kolankiewicz-85b333302/" class="footer-social-icon">
                             <i class="bi bi-linkedin"></i>
                         </a>
-                        <a href="#" class="footer-social-icon">
+                        <a href="https://github.com/akolankiewicz" class="footer-social-icon">
                             <i class="bi bi-github"></i>
                         </a>
                     </div>

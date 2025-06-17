@@ -189,15 +189,21 @@ final class DB {
      */
     public function deletePlayer($playerId): void
     {
-        $playerName = $this->queryAndFetch("SELECT nome FROM players WHERE id = " . $playerId)[0];
+        $player = $this->queryAndFetch("SELECT nome, imagem FROM players WHERE id = " . $playerId)[0];
         $sql = "DELETE FROM players WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $playerId);
         $result = $stmt->execute();
+
         if (! $result) {
             throw new \Exception("Erro ao deletar os dados");
         }
-        $this->insertActivity($playerName['nome'], date('d-m-Y H:i'), 'deletado', $_SESSION['user_id']);
+
+        if (file_exists('/opt/project/public/' . $player['imagem'])) {
+            unlink('/opt/project/public/' . $player['imagem']);
+        }
+
+        $this->insertActivity($player['nome'], date('d-m-Y H:i'), 'deletado', $_SESSION['user_id']);
     }
 
     /**

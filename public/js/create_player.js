@@ -59,7 +59,6 @@ function openPlayerRegisterFields() {
     <p class="mt-4" style="color: #ffffff; font-size: 20px">Atributos</p>
     <hr class="mt-3 mb-3"><br>
     <div class="row mt-2">
-        <!-- Rever se pode isso ou melhor colocar alguma tag html com id -->
         ${generateAttributeFields()}
     </div>
     <br>

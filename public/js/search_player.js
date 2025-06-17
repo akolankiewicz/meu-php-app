@@ -145,7 +145,7 @@ function clearFieldsFilters(showConfirm) {
     if (clear) {
         const filtersContainer = document.getElementById("filters");
         if (filtersContainer) {
-            const inputs = filtersContainer.querySelectorAll('input[type="text"], input[type="number"]');
+            const inputs = filtersContainer.querySelectorAll('input[type="text"], input[type="number"], input[type="file"]');
             const selects = filtersContainer.querySelectorAll('select');
 
             inputs.forEach(input => {
@@ -155,6 +155,8 @@ function clearFieldsFilters(showConfirm) {
             selects.forEach(select => {
                 select.value = '';
             });
+
+
         }
     }
 }
