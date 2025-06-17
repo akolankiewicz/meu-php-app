@@ -496,3 +496,190 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+
+/* Estilos para o ícone de engrenagem e menu */
+
+/* Ícone de engrenagem fixo */
+.gear-icon {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.gear-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
+}
+
+/* SVG da engrenagem */
+.gear-svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+    transition: transform 0.3s ease;
+}
+
+.gear-icon:hover .gear-svg {
+    transform: rotate(45deg);
+}
+
+.gear-icon.loading .gear-svg {
+    animation: gearRotate 2s linear infinite;
+}
+
+@keyframes gearRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Menu lateral */
+.side-menu {
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    width: 250px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    overflow: hidden;
+}
+
+.side-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Cabeçalho do menu */
+.menu-header {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Loading spinner */
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.loading-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #4f46e5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Lista de opções do menu */
+.menu-options {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.menu-options.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Animação de entrada das opções */
+.menu-option {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f3f4f6;
+    transform: translateX(-20px);
+    opacity: 0;
+}
+
+.menu-options.active .menu-option {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.menu-options.active .menu-option:nth-child(1) { transition-delay: 0.1s; }
+.menu-options.active .menu-option:nth-child(2) { transition-delay: 0.2s; }
+.menu-options.active .menu-option:nth-child(3) { transition-delay: 0.3s; }
+.menu-options.active .menu-option:nth-child(4) { transition-delay: 0.4s; }
+.menu-options.active .menu-option:nth-child(5) { transition-delay: 0.5s; }
+
+.menu-option:hover {
+    background-color: #f8fafc;
+}
+
+.menu-option:last-child {
+    border-bottom: none;
+}
+
+.option-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    fill: #6b7280;
+}
+
+.option-text {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Overlay para fechar o menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+

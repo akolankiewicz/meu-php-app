@@ -30,16 +30,22 @@ async function showButtonStatsPlayer(userData) {
 </div>
 <div class="row mt-1">
     <div class="col-md-4">
-            <button type="submit" class="btn btn-primary btn-sm w-100" id="btn-edit-player" style="height: 100px;">
-        Plano de treino</button>      
+        <button type="submit" class="btn btn-training-plan btn-sm w-100 d-flex flex-column align-items-center justify-content-center" id="btn-training-plan" style="height: 100px;">
+            <i class="bi bi-clipboard-check fs-2"></i>
+            <span class="mt-2">Plano de treino</span>
+        </button>      
     </div>
     <div class="col-md-4">
-                <button type="submit" class="btn btn-success btn-sm w-100" id="btn-edit-player" style="height: 100px;">
-        Editar jogador</button>      
+        <button type="submit" class="btn btn-edit-player btn-sm w-100 d-flex flex-column align-items-center justify-content-center" id="btn-edit-player" style="height: 100px;">
+            <i class="bi bi-pencil-square fs-2"></i>
+            <span class="mt-2">Editar jogador</span>
+        </button>      
     </div>
     <div class="col-md-4">
-            <button type="submit" class="btn btn-danger btn-sm w-100" id="btn-delete-player" style="height: 100px;">
-        Excluir jogador</button>
+        <button type="submit" class="btn btn-remove-player btn-sm w-100 d-flex flex-column align-items-center justify-content-center" id="btn-delete-player" style="height: 100px;">
+            <i class="bi bi-trash fs-2"></i>
+            <span class="mt-2">Excluir jogador</span>
+        </button>
     </div>
 </div>
         `;
@@ -221,7 +227,7 @@ function radarChart(ritmo, finalizacao, passe, drible, defesa, fisico) {
 }
 
 function editPlayer() {
-    //editar jogador
+
 }
 
 function deletePlayer() {

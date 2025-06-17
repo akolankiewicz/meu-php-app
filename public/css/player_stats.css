@@ -67,6 +67,51 @@ input[type="number"]:focus {
     color: white;
     box-shadow: none;
 }
+
+/* Estilos base para todos os botões (mantidos para consistência e boa UX) */
+.btn-training-plan,
+.btn-edit-player,
+.btn-remove-player {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    color: white; /* Texto branco para alto contraste */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/* Efeitos de hover para todos os botões (mantidos) */
+.btn-training-plan:hover,
+.btn-edit-player:hover,
+.btn-remove-player:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0.95;
+}
+
+/* Botão "Plano de treino" - Ação Primária/Positiva (Azul-Roxo Vibrante) */
+/* Um gradiente que remete ao roxo do cabeçalho e do logo, mas com uma base azul escura. */
+.btn-training-plan {
+    background: linear-gradient(135deg, #2A2A5A 0%, #4B0082 100%); /* De um azul-roxo escuro para um índigo */
+}
+
+/* Botão "Editar jogador" - Ação Neutra/Modificação (Azul Escuro Sutil) */
+/* Um gradiente de azul escuro que se mistura bem com o fundo, mas ainda é distinto. */
+.btn-edit-player {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%); /* Do Wet Asphalt para o Midnight Blue */
+}
+
+/* Botão "Excluir jogador" - Ação Destrutiva (Azul-Preto Profundo) */
+/* O tom mais escuro e profundo, quase preto, para indicar seriedade e finalidade, sem usar vermelho. */
+.btn-remove-player {
+    background: linear-gradient(135deg, #1A1A2E 0%, #0F1A2C 100%); /* Do tom mais escuro do fundo para um azul-preto ainda mais profundo */
+}
+
 @media (max-width: 768px) {
     .radar-chart-container {
         width: 100%;
