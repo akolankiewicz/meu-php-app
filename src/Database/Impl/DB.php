@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Database\Impl;
+use App\Logs\Impl\ActivityLogger;
 use PDO;
 use PDOException;
 
@@ -8,7 +9,8 @@ final class DB {
     private static ?DB $instance = null;
     private PDO $pdo;
 
-    private function __construct(){
+    private function __construct()
+    {
         $db = 'pgsql:host=postgres;port=5432;dbname=db;';
         $user = 'admin';
         $password = 'admin';
@@ -39,6 +41,16 @@ final class DB {
     {
         $query = $this->pdo->query($text);
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deletePlayer(string $playerId): bool
+    {
+        $sql = "DELETE FROM players WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $playerId);
+        $result = $stmt->execute();
+
+        return ! ($result === false);
     }
 
     /**
@@ -174,52 +186,13 @@ final class DB {
         try {
             $id = $this->pdo->lastInsertId();
             $nome = $this->queryAndFetch("SELECT nome FROM players WHERE id = " . $id);
-            $this->insertActivity($nome[0]['nome'], date('d-m-Y H:i'), 'cadastrado', $_SESSION['user_id']);
+            $logger = new ActivityLogger(self::$instance, $this->pdo);
+            $logger->insertActivity($nome[0]['nome'], date('d-m-Y H:i'), 'cadastrado', $_SESSION['user_id']);
 
             return ['id' => $id, 'nome' => $nome];
         } catch (PDOException $e) {
             http_response_code(500);
             return ['erro' => 'Erro ao inserir jogador no banco de dados: ' . $e->getMessage()];
-        }
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function deletePlayer($playerId): void
-    {
-        $player = $this->queryAndFetch("SELECT nome, imagem FROM players WHERE id = " . $playerId)[0];
-        $sql = "DELETE FROM players WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $playerId);
-        $result = $stmt->execute();
-
-        if (! $result) {
-            throw new \Exception("Erro ao deletar os dados");
-        }
-
-        if ($player['imagem'] && file_exists('/opt/project/public/' . $player['imagem'])) {
-            unlink('/opt/project/public/' . $player['imagem']);
-        }
-
-        $this->insertActivity($player['nome'], date('d-m-Y H:i'), 'deletado', $_SESSION['user_id']);
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function insertActivity($name, $date, $type, $operator)
-    {
-        $sql = "INSERT INTO atividade (nome, data, tipo, operador) VALUES (:name, :date, :type, :operator)";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':name', $name);
-        $stmt->bindValue(':date', $date);
-        $stmt->bindValue(':type', $type);
-        $stmt->bindValue(':operator', $operator);
-        $result = $stmt->execute();
-
-        if (! $result) {
-            throw new \Exception("Erro ao inserir os dados");
         }
     }
 }

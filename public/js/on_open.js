@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const dataMessage = JSON.parse(localStorage.getItem('mustShowSuccessMessage'));
         if (dataMessage) {
             exibirToastSuccess(dataMessage);
+            localStorage.removeItem('mustShowSuccessMessage')
         }
     }
 });
