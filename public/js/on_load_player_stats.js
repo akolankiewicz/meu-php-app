@@ -242,9 +242,9 @@ function deletePlayer() {
                 return response.json();
             })
             .then(async data => {
-                console.log(data);
                 if (data.success) {
-                    exibirToastSuccess(data.success);
+                    localStorage.setItem('mustShowSuccessMessage', JSON.stringify(data.success));
+                    window.location.href = '../players.php';
                 } else {
                     exibirToastErro(`Ocorreu um erro ao deletar o jogador ID ${playerId}`)
                 }

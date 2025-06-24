@@ -3,8 +3,8 @@
 session_start();
 ! $_SESSION['auth'] && header('Location: login-screen.html');
 
-use App\Impl\DB;
-use App\Impl\Dashboard;
+use App\Database\Impl\Dashboard;
+use App\Database\Impl\DB;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();

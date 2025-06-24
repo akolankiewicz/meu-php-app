@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Impl;
+namespace App\Database\Impl;
 
 final class Dashboard {
     private DB $db;

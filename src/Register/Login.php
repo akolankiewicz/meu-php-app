@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Impl;
+namespace App\Register;
 
+use App\Database\Impl\DB;
 use Exception;
 
 final class Login

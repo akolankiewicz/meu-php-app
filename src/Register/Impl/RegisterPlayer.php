@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Impl;
+namespace App\Register\Impl;
 
-use App\RegisterInterface;
+use App\Database\Impl\DB;
+use App\Register\RegisterInterface;
 use DateTime;
 use Exception;
 

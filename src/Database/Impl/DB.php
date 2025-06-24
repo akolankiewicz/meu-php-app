@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Impl;
-use http\Exception;
+namespace App\Database\Impl;
 use PDO;
 use PDOException;
 
@@ -199,7 +198,7 @@ final class DB {
             throw new \Exception("Erro ao deletar os dados");
         }
 
-        if (file_exists('/opt/project/public/' . $player['imagem'])) {
+        if ($player['imagem'] && file_exists('/opt/project/public/' . $player['imagem'])) {
             unlink('/opt/project/public/' . $player['imagem']);
         }
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Register;
 
-use App\Impl\DB;
+use App\Database\Impl\DB;
 
 interface RegisterInterface {
     public function __construct(DB $db);

@@ -3,8 +3,8 @@
 session_start();
 ! $_SESSION['auth'] && header('Location: login-screen.html');
 
-use App\Impl\DB;
-use App\Impl\RegisterPlayer;
+use App\Database\Impl\DB;
+use App\Register\Impl\RegisterPlayer;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();

@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Impl;
+namespace App\Search;
 
+use App\Database\Impl\DB;
 use DateTime;
 use Exception;
 use PDO;

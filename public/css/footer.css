@@ -497,10 +497,6 @@
     background-clip: text;
 }
 
-
-/* Estilos para o ícone de engrenagem e menu */
-
-/* Ícone de engrenagem fixo */
 .gear-icon {
     position: fixed;
     bottom: 30px;
@@ -524,7 +520,6 @@
     box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
 }
 
-/* SVG da engrenagem */
 .gear-svg {
     width: 28px;
     height: 28px;
@@ -545,7 +540,6 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Menu lateral */
 .side-menu {
     position: fixed;
     bottom: 100px;
@@ -568,7 +562,6 @@
     transform: translateY(0) scale(1);
 }
 
-/* Cabeçalho do menu */
 .menu-header {
     background: linear-gradient(135deg, #4f46e5, #7c3aed);
     color: white;
@@ -578,7 +571,6 @@
     font-size: 16px;
 }
 
-/* Loading spinner */
 .loading-container {
     display: flex;
     align-items: center;
@@ -608,7 +600,6 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Lista de opções do menu */
 .menu-options {
     opacity: 0;
     visibility: hidden;
@@ -620,7 +611,6 @@
     visibility: visible;
 }
 
-/* Animação de entrada das opções */
 .menu-option {
     display: flex;
     align-items: center;
@@ -644,7 +634,7 @@
 .menu-options.active .menu-option:nth-child(5) { transition-delay: 0.5s; }
 
 .menu-option:hover {
-    background-color: #f8fafc;
+    background-color: #ddeafd;
 }
 
 .menu-option:last-child {
@@ -681,5 +671,116 @@
 .overlay.active {
     opacity: 1;
     visibility: visible;
+}
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+}
+
+.modal-content {
+    background-color: #2A2A4A;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+    background-color: #342D5A;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.modal-body {
+    color: black;
+    padding: 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.modal-body p {
+    margin-bottom: 8px;
+}
+
+.modal-body span {
+    font-weight: 500;
+}
+
+.modal-body span:nth-of-type(1) { color: #8A2BE2; }
+.modal-body span:nth-of-type(2) { color: #9370DB; }
+.modal-body span:nth-of-type(3) { color: #6A5ACD; }
+.modal-body span:nth-of-type(4) { color: #4682B4; }
+.modal-body span:nth-of-type(5) { color: #7B68EE; }
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    background-color: #342D5A;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #5A5A7A;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #4A4A6A;
+}
+
+.modal-dialog.modal-custom-height {
+    max-width: 850px;
+    width: 95%;
+}
+
+.modal-content.modal-content-custom {
+    min-height: 600px;
+}
+
+#log-content {
+    max-height: 400px;
+}
+
+@media (max-width: 768px) {
+    .modal-dialog.modal-custom-height {
+        max-width: 95%;
+    }
+    .modal-content.modal-content-custom {
+        min-height: auto;
+        max-height: 85vh;
+    }
+    #log-content {
+        max-height: 60vh;
+    }
 }
 
