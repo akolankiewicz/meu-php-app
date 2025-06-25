@@ -83,7 +83,7 @@ session_start();
                             </a>
                         </li>
                         <li class="mobile-nav-item">
-                            <a href="#jogadores" class="mobile-nav-link active">
+                            <a href="players.php" class="mobile-nav-link active">
                                 <i class="bi bi-people-fill mobile-nav-icon"></i>
                                 <span>Jogadores</span>
                             </a>

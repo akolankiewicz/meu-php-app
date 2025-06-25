@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (userData) {
                 showButtonStatsPlayer(JSON.parse(userData));
             }
-            showPlayerStats(data, userData);
+            showPlayerStats(data);
         })
         .catch(error => {
             console.error('Ocorreu um erro ao buscar dados de sessão:', error);
@@ -28,20 +28,14 @@ async function showButtonStatsPlayer(userData) {
 <div class="row mt-1">
     <h3 style="text-align: center; color: white">Ações</h3>
 </div>
-<div class="row mt-1">
-    <div class="col-md-4">
-        <button type="submit" class="btn btn-training-plan btn-sm w-100 d-flex flex-column align-items-center justify-content-center" id="btn-training-plan" style="height: 100px;">
-            <i class="bi bi-clipboard-check fs-2"></i>
-            <span class="mt-2">Plano de treino</span>
-        </button>      
-    </div>
-    <div class="col-md-4">
+<div class="row mt-2">
+    <div class="col-md-6">
         <button type="submit" class="btn btn-edit-player btn-sm w-100 d-flex flex-column align-items-center justify-content-center" id="btn-edit-player" style="height: 100px;">
             <i class="bi bi-pencil-square fs-2"></i>
             <span class="mt-2">Editar jogador</span>
         </button>      
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <button type="submit" class="btn btn-remove-player btn-sm w-100 d-flex flex-column align-items-center justify-content-center" id="btn-delete-player" style="height: 100px;">
             <i class="bi bi-trash fs-2"></i>
             <span class="mt-2">Excluir jogador</span>
@@ -69,7 +63,7 @@ async function showButtonStatsPlayer(userData) {
     btnDeletePlayer.addEventListener('click', deletePlayer);
 }
 
-async function showPlayerStats(parseData, sessionData) {
+async function showPlayerStats(parseData) {
     const player = parseData[''];
     if (!player) return;
 
@@ -227,7 +221,9 @@ function radarChart(ritmo, finalizacao, passe, drible, defesa, fisico) {
 }
 
 function editPlayer() {
-
+    const params = new URLSearchParams(window.location.search);
+    const playerId = params.get('player_id');
+    window.location.href = '/edit.php?id=' + playerId;
 }
 
 function deletePlayer() {

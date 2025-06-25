@@ -71,7 +71,7 @@ final class Dashboard {
         return $this->db->queryAndFetch("
             SELECT DISTINCT ON (tipo) *
             FROM atividade
-            WHERE tipo IN ('cadastrado', 'deletado', 'colaborador')
+            WHERE tipo IN ('cadastrado', 'deletado', 'editado')
             ORDER BY tipo, id DESC;
         ");
     }

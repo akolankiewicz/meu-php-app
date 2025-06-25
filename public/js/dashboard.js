@@ -373,19 +373,19 @@ function assembleActivitiesArray(data) {
             case 'cadastrado':
                 activity.type = 'player-registered';
                 activity.title = 'Jogador cadastrado recentemente';
-                activity.description = `${item.nome} foi cadastrado na plataforma`;
+                activity.description = `${item.nome} foi cadastrado na plataforma pelo usuário ID ${item.operador}`;
                 break;
 
             case 'deletado':
                 activity.type = 'player-deleted';
                 activity.title = 'Jogador excluído recentemente';
-                activity.description = `${item.nome} foi removido do sistema`;
+                activity.description = `${item.nome} foi removido do sistema pelo usuário ID ${item.operador}`;
                 break;
 
-            case 'colaborador':
+            case 'editado':
                 activity.type = 'collaborator-added';
-                activity.title = 'Novo colaborador cadastrado';
-                activity.description = `${item.nome} é o mais novo colaborador`;
+                activity.title = 'Jogador editado recentemente';
+                activity.description = `${item.nome} foi editado pelo usuário ID ${item.operador}`;
                 break;
         }
 

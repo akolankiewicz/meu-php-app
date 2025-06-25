@@ -97,7 +97,7 @@ final class DB {
         $nacionalidade = $userData['nacionalidade'];
         $peso = $userData['peso'];
         $altura = $userData['altura'];
-        $dataNascimento = $userData['dataNascimento'];
+        $dataNascimento = $userData['data_nascimento'];
         $clube = $userData['clube'];
         $aceleracao = $userData['aceleracao'] ?? null;
         $pique = $userData['pique'] ?? null;
@@ -124,7 +124,7 @@ final class DB {
         $impulsao = $userData['impulsao'] ?? null;
         $folego = $userData['folego'] ?? null;
         $forca = $userData['forca'] ?? null;
-        $imagem = $userData['imagem'] ?? null;
+        $imagem = $userData['imagem'] == 'undefined' ? null : $userData['imagem'];
         
         $sql = "INSERT INTO players (
                     nome, posicao, nacionalidade, peso, altura, data_nascimento, clube,

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Search;
+namespace App\Player;
 
 use App\Database\Impl\DB;
 use DateTime;
