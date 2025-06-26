@@ -43,8 +43,8 @@ if ($register->validateFieldsToInsert($dataUser) === true) {
             throw new Exception("Erro ao autenticar após o cadastro.");
         }
     } catch (Exception $e) {
-        header('Location: ../register-screen.php?error=' .  urlencode('Email já cadastrado'));
+        header('Location: ../register-screen.html');
     }
 } else {
-    header('Location: ../register-screen.php?error=' . urlencode('Dados inválidos!'));
+    header('Location: ../register-screen.html');
 }

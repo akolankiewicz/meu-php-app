@@ -23,13 +23,12 @@ final class Login
     {
         $userData = $this->verifyIfExistsEmail($email)[0];
         if (! $userData) {
-            throw new Exception('Email inexistente, verifique se escreveu corretamente ou faça seu cadastro!');
+            return null;
         }
 
         if (password_verify($password, $userData['senha'])) {
             return $userData;
         } else {
-            header('Location: login-screen.html');
             return null;
         }
     }

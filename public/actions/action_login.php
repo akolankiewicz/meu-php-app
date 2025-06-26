@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-! $_SESSION['auth'] && header('Location: login-screen.html');
-
 use App\Database\Impl\DB;
 use App\Register\Login;
 
@@ -11,7 +8,8 @@ $db = DB::getInstance();
 
 $login = new Login($db);
 try {
-    if ($userData = $login->doLogin($_POST['email'], $_POST['senha'])) {
+    $userData = $login->doLogin($_POST['email'], $_POST['senha']);
+    if ($userData) {
         session_start();
         $_SESSION['user_id'] = $userData['id'];
         $_SESSION['user_name'] = $userData['nome'];
@@ -19,6 +17,8 @@ try {
         $_SESSION['email'] = $userData['email'];
         $_SESSION['auth'] = true;
         header('Location: ../index.php');
+    } else {
+        header('Location: ../login-screen.html');
     }
 } catch (Exception $e) {
     throw new Exception($e->getMessage());

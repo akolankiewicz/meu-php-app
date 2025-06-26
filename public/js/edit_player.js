@@ -285,7 +285,7 @@ class PlayerEditor {
         this.showLoading();
 
         const playerData = this.collectFormData();
-        const playerId = PlayerUtils.getUrlParameter("id");
+        const playerId = this.getUrlParameter("id");
         playerData.id = playerId;
 
         if (! playerId) {
