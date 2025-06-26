@@ -41,32 +41,61 @@ final class SearchPlayer
     /**
      * @throws Exception
      */
-    public function searchPlayerByNamePositionClub($name, $position, $club): ?array
-    {
+    public function searchPlayerByNamePositionClub(
+        $name,
+        $position,
+        $club,
+        $nationality,
+        $order
+    ): ?array {
+        $whereClauses = [];
+        $params = [];
+
+        if (!empty($name)) {
+            $whereClauses[] = "nome ILIKE :name";
+            $params[':name'] = "%" . $name . "%";
+        }
+
+        if (!empty($position) && $position !== 'POS') {
+            $whereClauses[] = "posicao = :posicao";
+            $params[':posicao'] = $position;
+        }
+
+        if (!empty($club)) {
+            $whereClauses[] = "clube ILIKE :club";
+            $params[':club'] = "%" . $club . "%";
+        }
+
+        if (!empty($nationality)) {
+            $whereClauses[] = "nacionalidade ILIKE :nationality";
+            $params[':nationality'] = "%" . $nationality . "%";
+        }
+
+        $sql = "SELECT * FROM players";
+
+        if (!empty($whereClauses)) {
+            $sql .= " WHERE " . implode(" AND ", $whereClauses);
+        }
+
+        $validOrderColumns = ['id', 'nome', 'posicao', 'nacionalidade', 'clube'];
+
+        if (!empty($order) && in_array(strtolower($order), $validOrderColumns)) {
+            $sql .= " ORDER BY " . $order . " ASC";
+        } else {
+            $sql .= " ORDER BY id DESC";
+        }
+
         try {
-            $conditions = [];
+            $stmt = $this->pdo->prepare($sql);
 
-            if (! empty($name)) {
-                $conditions[] = "nome LIKE '%" . $name . "%'";
+            foreach ($params as $key => $value) {
+                $stmt->bindValue($key, $value);
             }
 
-            if (! empty($position) && $position !== 'POS') {
-                $conditions[] = "posicao = '" . $position . "'";
-            }
-
-            if (! empty($club)) {
-                $conditions[] = "clube LIKE '%" . $club . "%'";
-            }
-
-            $sql = "SELECT * FROM players";
-
-            if (! empty($conditions)) {
-                $sql .= " WHERE " . implode(" AND ", $conditions);
-            }
-
-            return $this->db->queryAndFetch($sql);
-        } catch (Exception $e) {
-            throw new Exception('Ocorreu um erro ao retornar a busca: ' . $e->getMessage());
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            throw new \Exception("Erro ao buscar jogadores: " . $e->getMessage());
         }
     }
 

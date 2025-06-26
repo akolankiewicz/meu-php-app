@@ -14,10 +14,12 @@ $search = $_POST['search'] ?? null;
 $nome = $_POST['nome'] ?? '';
 $posicao = $_POST['posicao'] ?? '';
 $clube = $_POST['clube'] ?? '';
+$nacionalidade = $_POST['nacionalidade'] ?? '';
+$ordenar = $_POST['orderby'] ?? '';
 
 $searchPlayer = new SearchPlayer($db, $pdo);
 if ($search === null) {
-    $retorno = $searchPlayer->searchPlayerByNamePositionClub($nome, $posicao, $clube);
+    $retorno = $searchPlayer->searchPlayerByNamePositionClub($nome, $posicao, $clube, $nacionalidade, $ordenar);
 } else {
     $retorno = $searchPlayer->searchPlayer($search);
 }

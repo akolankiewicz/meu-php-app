@@ -1,13 +1,13 @@
 function addQuickFilters() {
     const quickFilters = `
     <div class="row mt-2">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="mb-3">
                 <label></label><input type="text" class="form-control form-control-sm" id="filter-name"
                     placeholder="Nome">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="mb-3">
                 <label></label>
                 <select class="form-select form-select-sm" id="filter-position">
@@ -19,10 +19,29 @@ function addQuickFilters() {
                 </select>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
+            <div class="mb-3">
+                <label></label><input type="text" class="form-control form-control-sm"
+                    id="filter-nationality" placeholder="Nacionalidade">
+            </div>
+        </div>
+        <div class="col-md-2">
             <div class="mb-3">
                 <label></label><input type="text" class="form-control form-control-sm"
                     id="filter-club" placeholder="Clube">
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="mb-3">
+                <label></label>
+                <select class="form-select form-select-sm" id="filter-order">
+                    <option value="order">Ordenar</option>
+                    <option value="id">ID</option>
+                    <option value="nome">Nome</option>
+                    <option value="posicao">Posição</option>
+                    <option value="nacionalidade">Nacionalidade</option>
+                    <option value="clube">Clube</option>
+                </select>
             </div>
         </div>
         <div class="col-md-2">

@@ -4,14 +4,20 @@ async function setQuickFilters(evt) {
     evt.preventDefault();
     const playerName = document.getElementById('filter-name').value;
     const playerPosition = document.getElementById('filter-position').value;
+    const playerNationality = document.getElementById('filter-nationality').value;
     const playerClub = document.getElementById('filter-club').value;
+    const order = document.getElementById('filter-order').value;
     try {
         const response = await fetch('../actions/action_search_player.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `nome=${encodeURIComponent(playerName)}&posicao=${encodeURIComponent(playerPosition)}&clube=${encodeURIComponent(playerClub)}`
+            body: `nome=${encodeURIComponent(playerName)}` +
+                    `&posicao=${encodeURIComponent(playerPosition)}` +
+                    `&clube=${encodeURIComponent(playerClub)}` +
+                    `&nacionalidade=${encodeURIComponent(playerNationality)}` +
+                    `&orderby=${order}`
         });
 
         const parseData = await response.json();
