@@ -98,7 +98,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Media Queries para telas menores (ex: tablets e smartphones) */
 @media screen and (max-width: 768px) {
     .box {
         width: 90%;
@@ -130,7 +129,6 @@ a:hover {
     }
 }
 
-/* Media Query para telas ainda menores (smartphones) */
 @media screen and (max-width: 480px) {
     .box {
         width: 95%;

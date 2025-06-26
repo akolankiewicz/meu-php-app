@@ -1,6 +1,5 @@
 class PlayerEditor {
     constructor() {
-        this.currentPlayer = null;
         this.init();
     }
 
@@ -344,22 +343,6 @@ class PlayerEditor {
         });
     }
 
-    calculateOverall(playerData) {
-        const attributes = [
-            'aceleracao', 'pique', 'finalizacao', 'forca_do_chute', 'chute_de_longe',
-            'penalti', 'visao_de_jogo', 'cruzamento', 'passe_curto', 'passe_longo',
-            'curva', 'agilidade', 'equilibrio', 'reacao', 'controle_de_bola',
-            'drible', 'agressividade', 'interceptacao', 'precisao_no_cabeceio',
-            'nocao_defensiva', 'desarme', 'carrinho', 'impulsao', 'folego', 'forca'
-        ];
-        
-        const total = attributes.reduce((sum, attr) => {
-            return sum + (playerData[attr] || 0);
-        }, 0);
-        
-        return Math.round(total / attributes.length);
-    }
-
     async getPlayerData(playerId) {
         try {
             const response = await fetch(`../actions/action_get_player_stats.php?player_id=${playerId}`);
@@ -374,39 +357,18 @@ class PlayerEditor {
             return null;
         }
     }
-}
-
-const PlayerUtils = {
-    formatDate(dateString) {
-        if (!dateString) return '';
-        const date = new Date(dateString);
-        return date.toLocaleDateString('pt-BR');
-    },
-
-    calculateAge(birthDate) {
-        if (!birthDate) return null;
-        const today = new Date();
-        const birth = new Date(birthDate);
-        let age = today.getFullYear() - birth.getFullYear();
-        const monthDiff = today.getMonth() - birth.getMonth();
-        
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-            age--;
-        }
-        
-        return age;
-    },
 
     getUrlParameter(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
     }
-};
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const playerEditor = new PlayerEditor();
 
-    const playerId = PlayerUtils.getUrlParameter('id');
+    const playerId = playerEditor.getUrlParameter('id');
     if (playerId) {
         setTimeout(() => {
             playerEditor.loadPlayerData(playerId);
@@ -414,7 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.PlayerEditor = playerEditor;
-    window.PlayerUtils = PlayerUtils;
 });
 
 const style = document.createElement('style');
@@ -445,4 +406,3 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-

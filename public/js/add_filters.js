@@ -114,7 +114,6 @@ function addAdvancedFilters() {
     <p class="mt-4" style="color: #ffffff; font-size: 20px">Filtros por atributo</p>
     <hr class="mt-3 mb-3">
     <div class="row mt-2">
-        <!-- Rever se pode isso ou melhor colocar alguma tag html com id -->
         ${generateAttributeFilters()}
     </div>
     <div class="row mt-2">

@@ -32,7 +32,6 @@
     position: relative;
 }
 
-/* Logo Section */
 .navbar-logo {
     display: flex;
     align-items: center;
@@ -95,7 +94,6 @@
     color: #a78bfa;
 }
 
-/* Menu Central */
 .navbar-menu {
     display: flex;
     align-items: center;
@@ -176,8 +174,6 @@
     color: #a78bfa !important;
 }
 
-
-/* Botão Logout */
 .navbar-actions {
     display: flex;
     align-items: center;
@@ -235,7 +231,6 @@
     transform: translateX(2px);
 }
 
-/* Mobile Toggle */
 .mobile-toggle {
     display: none;
     flex-direction: column;
@@ -267,7 +262,6 @@
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Menu Mobile */
 .mobile-menu {
     position: fixed;
     top: 70px;
@@ -360,7 +354,6 @@
     box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
 }
 
-/* Conteúdo Principal */
 .main-content {
     margin-top: 70px;
     padding: 4rem 2rem;
@@ -426,7 +419,6 @@
     margin: 0;
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
     .navbar-container {
         padding: 0 1.5rem;
@@ -526,7 +518,6 @@
     }
 }
 
-/* Animações */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -559,7 +550,6 @@
     }
 }
 
-/* Estados de foco para acessibilidade */
 .nav-link:focus,
 .logout-btn:focus,
 .mobile-nav-link:focus,
@@ -568,7 +558,6 @@
     outline-offset: 2px;
 }
 
-/* Efeitos adicionais */
 .nav-icon,
 .logout-icon {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -578,12 +567,10 @@
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
-/* Scroll behavior */
 html {
     scroll-behavior: smooth;
 }
 
-/* Navbar com scroll */
 .modern-navbar.scrolled {
     background: rgba(26, 26, 26, 0.95);
     backdrop-filter: blur(25px);

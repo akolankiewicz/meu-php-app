@@ -1,12 +1,5 @@
-/* 
-   Ascend Stats - Register Dark Theme CSS
-   Estilos modernos para a tela de cadastro com tema escuro e campo de futebol
-   Com transições CSS aprimoradas
-*/
 
-/* ===== VARIÁVEIS E CONFIGURAÇÕES GERAIS ===== */
 :root {
-    /* Cores principais */
     --primary-color: #6c5ce7;
     --primary-dark: #5b4bc9;
     --primary-light: #8f7ff7;
@@ -15,13 +8,11 @@
     --info-color: #00cec9;
     --warning-color: #fdcb6e;
     --danger-color: #ff6b6b;
-    
-    /* Cores específicas para cards */
+
     --purple-card: #6c5ce7;
     --cyan-card: #00cec9;
     --green-card: #00b894;
-    
-    /* Tons de cinza */
+
     --gray-100: #f8f9fa;
     --gray-200: #e9ecef;
     --gray-300: #dee2e6;
@@ -31,8 +22,7 @@
     --gray-700: #495057;
     --gray-800: #343a40;
     --gray-900: #212529;
-    
-    /* Configurações de design */
+
     --border-radius: 8px;
     --border-radius-lg: 12px;
     --border-radius-sm: 4px;
@@ -41,7 +31,6 @@
     --transition-speed: 0.3s;
 }
 
-/* ===== ESTILOS GERAIS ===== */
 * {
     margin: 0;
     padding: 0;
@@ -75,7 +64,6 @@ body::before {
     z-index: -1;
 }
 
-/* ===== CONTAINER DE CADASTRO ===== */
 .register-container {
     width: 100%;
     max-width: 800px;
@@ -101,7 +89,6 @@ body::before {
     transform: translateY(-5px);
 }
 
-/* ===== CABEÇALHO DE CADASTRO ===== */
 .register-header {
     text-align: center;
     margin-bottom: 0.5rem;
@@ -155,7 +142,6 @@ body::before {
     font-size: 0.95rem;
 }
 
-/* ===== FORMULÁRIO DE CADASTRO ===== */
 .register-form {
     display: flex;
     flex-direction: column;
@@ -229,7 +215,6 @@ body::before {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Estilização específica para o campo de data */
 input[type="date"] {
     color-scheme: dark;
 }
@@ -245,7 +230,6 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     opacity: 1;
 }
 
-/* Estilização para o select */
 select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
@@ -274,7 +258,6 @@ select {
     transform: translateY(-50%) scale(1.1);
 }
 
-/* Estilização para o checkbox */
 .terms-group {
     margin-top: 0.5rem;
 }
@@ -325,7 +308,6 @@ select {
     width: 100%;
 }
 
-/* Botão de cadastro */
 .register-button {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
@@ -380,7 +362,6 @@ select {
     transform: rotate(360deg);
 }
 
-/* Rodapé do formulário */
 .register-footer {
     text-align: center;
     font-size: 0.95rem;
@@ -415,7 +396,6 @@ select {
     width: 100%;
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
     .register-container {
         padding: 1rem;
@@ -471,7 +451,6 @@ select {
     }
 }
 
-/* ===== ANIMAÇÕES E TRANSIÇÕES ADICIONAIS ===== */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -492,7 +471,6 @@ select {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Animação sequencial para os campos do formulário */
 .form-row:nth-child(1) .form-group { animation-delay: 0.1s; }
 .form-row:nth-child(2) .form-group { animation-delay: 0.2s; }
 .form-row:nth-child(3) .form-group { animation-delay: 0.3s; }

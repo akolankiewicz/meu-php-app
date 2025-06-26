@@ -1,11 +1,5 @@
-/* 
-   Ascend Stats - Login Dark Theme CSS
-   Estilos modernos para a tela de login com tema escuro e campo de futebol
-*/
 
-/* ===== VARIÁVEIS E CONFIGURAÇÕES GERAIS ===== */
 :root {
-    /* Cores principais */
     --primary-color: #6c5ce7;
     --primary-dark: #5b4bc9;
     --primary-light: #8f7ff7;
@@ -14,13 +8,11 @@
     --info-color: #00cec9;
     --warning-color: #fdcb6e;
     --danger-color: #ff6b6b;
-    
-    /* Cores específicas para cards */
+
     --purple-card: #6c5ce7;
     --cyan-card: #00cec9;
     --green-card: #00b894;
-    
-    /* Tons de cinza */
+
     --gray-100: #f8f9fa;
     --gray-200: #e9ecef;
     --gray-300: #dee2e6;
@@ -30,8 +22,7 @@
     --gray-700: #495057;
     --gray-800: #343a40;
     --gray-900: #212529;
-    
-    /* Configurações de design */
+
     --border-radius: 8px;
     --border-radius-lg: 12px;
     --border-radius-sm: 4px;
@@ -40,7 +31,6 @@
     --transition-speed: 0.3s;
 }
 
-/* ===== ESTILOS GERAIS ===== */
 * {
     margin: 0;
     padding: 0;
@@ -73,7 +63,6 @@ body::before {
     z-index: -1;
 }
 
-/* ===== CONTAINER DE LOGIN ===== */
 .login-container {
     width: 100%;
     max-width: 1000px;
@@ -93,7 +82,6 @@ body::before {
     gap: 2rem;
 }
 
-/* ===== CABEÇALHO DE LOGIN ===== */
 .login-header {
     text-align: center;
     margin-bottom: 1rem;
@@ -134,7 +122,6 @@ body::before {
     font-size: 1rem;
 }
 
-/* ===== FORMULÁRIO DE LOGIN ===== */
 .login-form {
     display: flex;
     flex-direction: column;
@@ -280,7 +267,6 @@ body::before {
     text-decoration: underline;
 }
 
-/* ===== CARDS DE ESTATÍSTICAS ===== */
 .login-stats {
     display: flex;
     justify-content: center;
@@ -338,7 +324,6 @@ body::before {
     background: linear-gradient(135deg, #00b894, #00896f);
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 992px) {
     .login-card {
         padding: 2rem;

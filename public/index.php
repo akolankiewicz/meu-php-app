@@ -63,7 +63,6 @@
                     </form>
                 </div>
 
-                <!-- Menu Mobile Toggle -->
                 <button class="mobile-toggle" id="mobileToggle">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -71,7 +70,6 @@
                 </button>
             </div>
 
-            <!-- Menu Mobile -->
             <div class="mobile-menu" id="mobileMenu">
                 <div class="mobile-menu-content">
                     <ul class="mobile-nav-links">
