@@ -29,7 +29,7 @@ final class Login
         if (password_verify($password, $userData['senha'])) {
             return $userData;
         } else {
-            return null;
+            return ['erro' => 'Senha incorreta!'];
         }
     }
 
