@@ -47,7 +47,7 @@ de lançamento e manipulação de dados é seu diferencial quando o quesito é anális
       type_user, nome, senha, email, telefone, data_nascimento, cidade, estado, endereco
    ) VALUES (
       1, 'Seu nome', 'Sua senha', 'Seu e-mail',
-      'telefone', 'data de nascimento', 'Cidade', 'Estado (sigla)', 'endereco'
+      'telefone', '2005-07-02', 'Cidade', 'SC', 'endereco'
    );
 
 3. Acesse via navegador
