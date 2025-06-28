@@ -53,3 +53,4 @@ de lançamento e manipulação de dados é seu diferencial quando o quesito é anális
 3. Acesse via navegador
    ```bash
    localhost:8080/index.php
+   // utilize o email e a senha que você cadastrou
