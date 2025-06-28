@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Logs\Impl;
 
 use App\Database\Impl\DB;
+use Exception;
 use PDO;
 
 final class ActivityLogger extends Logger
@@ -14,6 +15,9 @@ final class ActivityLogger extends Logger
         parent::__construct($db, $pdo);
     }
 
+    /**
+     * @throws Exception
+     */
     public function insertActivity($name, $date, $type, $operator)
     {
         $sql = "INSERT INTO atividade (nome, data, tipo, operador) VALUES (:name, :date, :type, :operator)";

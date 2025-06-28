@@ -47,7 +47,7 @@ session_start();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#colaboradores" class="nav-link">
+                            <a href="collaborators.php" class="nav-link">
                                 <i class="bi bi-person-badge-fill nav-icon"></i>
                                 <span>Colaboradores</span>
                             </a>
@@ -87,7 +87,7 @@ session_start();
                             </a>
                         </li>
                         <li class="mobile-nav-item">
-                            <a href="#colaboradores" class="mobile-nav-link">
+                            <a href="collaborators.php" class="mobile-nav-link">
                                 <i class="bi bi-person-badge-fill mobile-nav-icon"></i>
                                 <span>Colaboradores</span>
                             </a>

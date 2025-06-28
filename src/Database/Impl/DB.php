@@ -64,7 +64,7 @@ final class DB {
         RETURNING id, nome
         ');
 
-        $stmt->bindValue(':type_user', 2);
+        $stmt->bindValue(':type_user', $userData['type_user']);
         $stmt->bindValue(':nome', $userData['nome']);
         $stmt->bindValue(':senha', password_hash($userData['senha'], PASSWORD_DEFAULT));
         $stmt->bindValue(':email', $userData['email']);
@@ -79,6 +79,8 @@ final class DB {
         }
 
         $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $logger = new ActivityLogger(self::$instance, $this->pdo);
+        $logger->insertActivity('Colaborador ' . $user['nome'], date('d-m-Y H:i'), 'cadastrado', $_SESSION['user_id']);
 
         return [
             'id' => $user['id'],
@@ -187,7 +189,7 @@ final class DB {
             $id = $this->pdo->lastInsertId();
             $nome = $this->queryAndFetch("SELECT nome FROM players WHERE id = " . $id);
             $logger = new ActivityLogger(self::$instance, $this->pdo);
-            $logger->insertActivity($nome[0]['nome'], date('d-m-Y H:i'), 'cadastrado', $_SESSION['user_id']);
+            $logger->insertActivity('Jogador ' . $nome[0]['nome'], date('d-m-Y H:i'), 'cadastrado', $_SESSION['user_id']);
 
             return ['id' => $id, 'nome' => $nome];
         } catch (PDOException $e) {

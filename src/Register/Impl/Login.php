@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Register;
+namespace App\Register\Impl;
 
 use App\Database\Impl\DB;
 use Exception;

@@ -46,6 +46,15 @@ function renderDashboardCards(data) {
     if (cardTotalPlayers) {
         cardTotalPlayers.addEventListener('click', openFiltersForAllPlayers);
     }
+
+    const cardTotalCollaborators = document.getElementById('t-c');
+    if (cardTotalCollaborators) {
+        cardTotalCollaborators.addEventListener('click', function () {
+            if (confirm('Deseja abrir a aba de colaboradores para visualizar todos os colaboradores registrados?')) {
+                window.location.href = '/collaborators.php';
+            }
+        })
+    }
 }
 
 function renderBarChart(data) {
@@ -372,19 +381,19 @@ function assembleActivitiesArray(data) {
         switch (item.tipo) {
             case 'cadastrado':
                 activity.type = 'player-registered';
-                activity.title = 'Jogador cadastrado recentemente';
+                activity.title = 'Cadastrado recentemente';
                 activity.description = `${item.nome} foi cadastrado na plataforma pelo usuário ID ${item.operador}`;
                 break;
 
             case 'deletado':
                 activity.type = 'player-deleted';
-                activity.title = 'Jogador excluído recentemente';
+                activity.title = 'Excluído recentemente';
                 activity.description = `${item.nome} foi removido do sistema pelo usuário ID ${item.operador}`;
                 break;
 
             case 'editado':
                 activity.type = 'collaborator-added';
-                activity.title = 'Jogador editado recentemente';
+                activity.title = 'Editado recentemente';
                 activity.description = `${item.nome} foi editado pelo usuário ID ${item.operador}`;
                 break;
         }

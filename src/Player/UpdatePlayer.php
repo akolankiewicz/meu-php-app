@@ -34,7 +34,7 @@ final class UpdatePlayer
 
         try {
             $this->pdo->query("UPDATE players SET " . $changes['fields'] . " WHERE id = " . $id);
-            $this->logger->insertActivity($data['nome'], date('d-m-Y H:i'), 'editado', $_SESSION['user_id']);
+            $this->logger->insertActivity('Jogador ' . $data['nome'], date('d-m-Y H:i'), 'editado', $_SESSION['user_id']);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

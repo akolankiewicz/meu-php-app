@@ -396,6 +396,22 @@ select {
     width: 100%;
 }
 
+.breadcrumb-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
 @media (max-width: 768px) {
     .register-container {
         padding: 1rem;

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Database\Impl;
+namespace App\Player;
 
+use App\Database\Impl\DB;
 use App\Logs\Impl\ActivityLogger;
 use Exception;
 use PDO;
@@ -39,7 +40,7 @@ class DeletePlayer
             unlink('/opt/project/public/' . $player['imagem']);
         }
 
-        $this->logger->insertActivity($player['nome'], date('d-m-Y H:i'), 'deletado', $_SESSION['user_id']);
+        $this->logger->insertActivity('Jogador ' . $player['nome'], date('d-m-Y H:i'), 'deletado', $_SESSION['user_id']);
 
         return true;
     }

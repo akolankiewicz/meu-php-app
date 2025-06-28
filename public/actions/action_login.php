@@ -1,7 +1,7 @@
 <?php
 
 use App\Database\Impl\DB;
-use App\Register\Login;
+use App\Register\Impl\Login;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();

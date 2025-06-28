@@ -4,7 +4,7 @@ session_start();
 ! $_SESSION['auth'] && header('Location: login-screen.html');
 
 use App\Database\Impl\DB;
-use App\Database\Impl\DeletePlayer;
+use App\Player\DeletePlayer;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 $db = DB::getInstance();

@@ -15,12 +15,12 @@ final class Dashboard {
     public function getCardsData(): array
     {
         $totalPlayers = $this->db->queryAndFetch("SELECT count(*) FROM players")[0]['count'];
-        $totalColaborators = 123;
+        $totalCollaborators = $this->db->queryAndFetch("SELECT count(*) FROM users")[0]['count'];
         $totalPlanosDeTreino = 15;
 
         return [
             'totalJogadores' => $totalPlayers,
-            'totalColaboradores' => $totalColaborators,
+            'totalColaboradores' => $totalCollaborators,
             'totalPlanosDeTreino' => $totalPlanosDeTreino];
     }
 

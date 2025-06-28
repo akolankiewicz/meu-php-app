@@ -34,7 +34,7 @@
                 <div class="navbar-menu" id="navbarMenu">
                     <ul class="nav-links">
                         <li class="nav-item">
-                            <a href="#dashboard" class="nav-link active">
+                            <a href="index.php" class="nav-link active">
                                 <i class="bi bi-speedometer2 nav-icon"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#colaboradores" class="nav-link">
+                            <a href="collaborators.php" class="nav-link">
                                 <i class="bi bi-person-badge-fill nav-icon"></i>
                                 <span>Colaboradores</span>
                             </a>
@@ -74,7 +74,7 @@
                 <div class="mobile-menu-content">
                     <ul class="mobile-nav-links">
                         <li class="mobile-nav-item">
-                            <a href="#dashboard" class="mobile-nav-link active">
+                            <a href="index.php" class="mobile-nav-link active">
                                 <i class="bi bi-speedometer2 mobile-nav-icon"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="mobile-nav-item">
-                            <a href="#colaboradores" class="mobile-nav-link">
+                            <a href="collaborators.php" class="mobile-nav-link">
                                 <i class="bi bi-person-badge-fill mobile-nav-icon"></i>
                                 <span>Colaboradores</span>
                             </a>
