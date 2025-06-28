@@ -41,19 +41,28 @@ de lançamento e manipulação de dados é seu diferencial quando o quesito é anális
    cd meu-php-app
    docker compose build
    docker compose up -d
+
 2. Insira via banco de dados o seu primeiro usuário
    ```bash
+   // verifique se o container psql está rodando na porta 5432 com
+   docker ps
+   
+   // após verificar, rode o comando
+   docker exec -it psql psql -U admin -d db;
+   
+   // e insira os dados abaixo
    INSERT INTO users (
       type_user, nome, senha, email, telefone, data_nascimento, cidade, estado, endereco
    ) VALUES (
-      1, 'Seu nome', 'Sua senha', 'Seu e-mail',
+      1, 'Seu nome', '$2y$10$QHkQ8apHdBN9/fcHPAGZL.2FnzQeNYwQhKfjEmGtuya00.uCBmfUK', 'seuemail@email.com',
       'telefone', '2005-07-02', 'Cidade', 'SC', 'endereco'
    );
+   // A hash inserida será lida como 1 no seu primeiro login
 
 3. Acesse via navegador
    ```bash
    localhost:8080/index.php
-   // utilize o email e a senha que você cadastrou
+   // Utilize email como seuemail@email.com e a senha sendo '1' para logar a primeira vez
 
 4. Logo ao acessar, vá para aba colaboradores e clique no ícone de lápis, edite sua senha para ser guardada com
    a criptografia correta e pode começar a utilizar o sistema!.
