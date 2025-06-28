@@ -23,7 +23,7 @@ function renderDashboardCards(data) {
     const dadosDashboard = [
         { titulo: "Total de jogadores registrados", valor: data.totalJogadores, cor: "primary", id: 't-p'},
         { titulo: "Total de colaboradores", valor: data.totalColaboradores, cor: "info", id: 't-c'},
-        { titulo: "Total de planos de treino", valor: data.totalPlanosDeTreino, cor: "success", id: 't-pt'}
+        { titulo: "Total de ações diárias", valor: data.totalAcoesDiarias, cor: "success", id: 't-pt'}
     ];
 
     const container = document.getElementById("dashboard-cards");

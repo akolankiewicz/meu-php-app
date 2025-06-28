@@ -16,12 +16,12 @@ final class Dashboard {
     {
         $totalPlayers = $this->db->queryAndFetch("SELECT count(*) FROM players")[0]['count'];
         $totalCollaborators = $this->db->queryAndFetch("SELECT count(*) FROM users")[0]['count'];
-        $totalPlanosDeTreino = 15;
+        $totalAcoesDiarias = $this->db->queryAndFetch("SELECT count(*) FROM atividade WHERE SUBSTRING(data, 1, 10) = TO_CHAR(CURRENT_DATE, 'DD-MM-YYYY');")[0]['count'];
 
         return [
             'totalJogadores' => $totalPlayers,
             'totalColaboradores' => $totalCollaborators,
-            'totalPlanosDeTreino' => $totalPlanosDeTreino];
+            'totalAcoesDiarias' => $totalAcoesDiarias];
     }
 
     public function getPizzaChartData(): array
