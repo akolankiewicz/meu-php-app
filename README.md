@@ -54,3 +54,6 @@ de lançamento e manipulação de dados é seu diferencial quando o quesito é anális
    ```bash
    localhost:8080/index.php
    // utilize o email e a senha que você cadastrou
+
+4. Logo ao acessar, vá para aba colaboradores e clique no ícone de lápis, edite sua senha para ser guardada com
+   a criptografia correta e pode começar a utilizar o sistema!.
