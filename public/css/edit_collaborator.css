@@ -212,13 +212,6 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.card-header {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px 30px;
-    border-radius: 20px 20px 0 0;
-}
-
 .card-title {
     font-size: 1.5rem;
     font-weight: 600;
@@ -498,7 +491,7 @@ footer {
     .form-section {
         padding: 15px;
     }
-    
+
     .card-header,
     .collaborator-form {
         padding: 15px;
