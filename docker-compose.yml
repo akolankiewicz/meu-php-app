@@ -32,6 +32,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro # montagem do banco
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
       interval: 10s
@@ -43,19 +44,3 @@ services:
       - /tmp
 volumes:
   postgres_data:
-
-#  db:
-#    image: mariadb:latest
-#    container_name: db
-#    restart: always
-#    environment:
-#      MARIADB_DATABASE: meubanco
-#      MARIADB_USER: meuusuario
-#      MARIADB_PASSWORD: senha123
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - mariadb_data:/var/lib/mysql
-#
-#volumes:
-#  mariadb_data:

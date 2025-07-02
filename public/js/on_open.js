@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (window.location.pathname === '/players.php') {
-        console.log('entra');
         const dataMessage = JSON.parse(localStorage.getItem('mustShowSuccessMessage'));
         if (dataMessage) {
             exibirToastSuccess(dataMessage);

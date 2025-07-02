@@ -11,6 +11,7 @@
 - **Insights visuais** com gráficos e dashboards interativos
 - Suporte a métricas personalizadas e filtros dinâmicos
 - Pronto para múltiplos usuários e dispositivos
+- Uso simples pelo docker, facilitando processo de instalação e configuração.
 
 ---
 
@@ -26,7 +27,7 @@ de lançamento e manipulação de dados é seu diferencial quando o quesito é anális
 
 - PHP moderno
 - JavaScript
-- MySQL
+- Postgres
 - Bootstrap (UI)
 - CanvaJs 
 - Git / GitHub
@@ -35,34 +36,19 @@ de lançamento e manipulação de dados é seu diferencial quando o quesito é anális
 
 ## Instalação
 
+- Para o funcionamento correto, é ideal que sua máquina esteja com a porta 8080 e a 5432 livres antes de subir o docker.
+
 1. Clone o projeto:
    ```bash
-   git clone https://github.com/seu-usuario/meu-php-app.git
-   cd meu-php-app
-   docker compose build
-   docker compose up -d
+   git clone https://github.com/seu-usuario/meu-php-app.git;
+   cd meu-php-app;
+   docker compose build;
+   docker compose up -d;
 
-2. Insira via banco de dados o seu primeiro usuário
-   ```bash
-   // verifique se o container psql está rodando na porta 5432 com
-   docker ps
-   
-   // após verificar, rode o comando
-   docker exec -it psql psql -U admin -d db;
-   
-   // e insira os dados abaixo
-   INSERT INTO users (
-      type_user, nome, senha, email, telefone, data_nascimento, cidade, estado, endereco
-   ) VALUES (
-      1, 'Seu nome', '$2y$10$QHkQ8apHdBN9/fcHPAGZL.2FnzQeNYwQhKfjEmGtuya00.uCBmfUK', 'seuemail@email.com',
-      'telefone', '2005-07-02', 'Cidade', 'SC', 'endereco'
-   );
-   // A hash inserida será lida como 1 no seu primeiro login
-
-3. Acesse via navegador
+2. Acesse via navegador:
    ```bash
    localhost:8080/index.php
-   // Utilize email como seuemail@email.com e a senha sendo '1' para logar a primeira vez
+   // Utilize email como 'admin@admin.com' e a senha sendo 'admin' para logar a primeira vez
 
-4. Logo ao acessar, vá para aba colaboradores e clique no ícone de lápis, edite sua senha para ser guardada com
-   a criptografia correta e pode começar a utilizar o sistema!.
+3. Logo ao acessar, vá para aba colaboradores e clique no ícone de lápis, edite seu usuário para ser guardado com
+   os dados e a criptografia correta e pode começar a utilizar o sistema!.
