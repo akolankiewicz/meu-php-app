@@ -52,14 +52,16 @@ final class UpdateUser
 
         $submittedPassword = $data['senha'];
         $currentHash = $actualData['senha'];
-        if ($submittedPassword !== $currentHash && ! password_verify($submittedPassword, $currentHash)) {
-            $changes['senha'] = password_hash($submittedPassword, PASSWORD_DEFAULT);
-        }
 
         $changes = [
             'fields' => '',
             'qtt' => 0
         ];
+
+        if ($submittedPassword !== $currentHash && ! password_verify($submittedPassword, $currentHash)) {
+            $changes['fields'] .= "senha = '" . password_hash($submittedPassword, PASSWORD_DEFAULT) . "', ";
+            $changes['qtt'] += 1;
+        }
 
         foreach ($data as $key => $value) {
             if ($key === 'senha' || $key === 'id') {
